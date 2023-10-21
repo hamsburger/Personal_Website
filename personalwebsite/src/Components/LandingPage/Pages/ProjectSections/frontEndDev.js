@@ -1,7 +1,7 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Magellan from "../../../images/magellan.png";
-import Baby_Photo from "../../../images/baby_photo.PNG";
+import Magellan from "../images/magellan.png";
+import Baby_Photo from "../images/baby_photo.PNG";
 export default ({styles, useStyles}) => {
     const parentClass = styles();
     const classes = useStyles();

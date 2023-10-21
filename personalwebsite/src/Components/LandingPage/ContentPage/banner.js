@@ -1,6 +1,6 @@
 import React, {useState, useRef, useEffect,  useMemo, useLayoutEffect} from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import TempContent from "./bannerContent";
+import BannerContent from "./bannerContent";
 const bannerStyles = makeStyles((theme)=>({
     arrow : {
         cursor: "pointer",
@@ -11,7 +11,7 @@ const bannerStyles = makeStyles((theme)=>({
       position: "relative",
       background: "rgba(211, 211, 211, 0.2)",
       width: props => { return (props.contentView) ? "100%" : 0}, 
-      height: props => { console.log(props); return (props.contentView) ? "100%" : 0 },
+      height: props => { return (props.contentView) ? "100%" : 0 },
       "& > div" : {
         paddingLeft: "0px",
         marginBottom: "5px",
@@ -19,15 +19,13 @@ const bannerStyles = makeStyles((theme)=>({
       },
       // Spacing parameters
       lineHeight: "30px",
-      padding: props => (props.contentView) ? "10px" : 0,
+      padding: 0,
       // display: props => props.contentView ? "block" : "none",
       transition: props => (props.contentView) ? "width 0.5s" : "height 0s",
     },
     postHeader : {
       // font settings
-      ...theme.typography.overline,
-      fontFamily: "Raleway",
-      fontWeight: "100",
+      ...theme.typography.overline_pretty,
       fontSize: "30px",
       letterSpacing: "4px",
 
@@ -63,7 +61,7 @@ const bannerStyles = makeStyles((theme)=>({
       // Animation Properties
       opacity: "0",
       top: "-50px",
-      animation: props => {  console.log(props); return `fadeIn ${props.seconds}s linear forwards` },
+      animation: props => {  return `fadeIn ${props.seconds}s linear forwards` },
       animationIterationCount: 1,
       // "& > div" : {
       //   display: "inline-block",
@@ -87,20 +85,22 @@ const Banner = (props) => {
       window.addEventListener("scroll", isInView);
       window.addEventListener("load", isInView);
       window.addEventListener("resize", isInView);
+      window.addEventListener("click", isInView);
   
       return () => { 
         window.removeEventListener("load", isInView);
         window.removeEventListener("scroll", isInView); 
         window.removeEventListener("resize", isInView);
+        window.removeEventListener("click", isInView);
       };
     }, []);
-  
+
     const isInView = () => {
       const rectangle = e1.current.getBoundingClientRect();
       let {top, height} = rectangle;
-    //   console.log(e1.current.getBoundingClientRect());
-    //   console.log(window.innerHeight);
-      setCanView(top <= window.innerHeight);
+
+      // 'top' is element's displacement from top of viewport
+      setCanView(top <= window.innerHeight - 10);
     }
   
     const toggleButton = (e) => {
@@ -116,7 +116,7 @@ const Banner = (props) => {
           <div onClick={toggleButton} className={classes.arrow}>{arrow}</div>
         </div> }
         { (canView) && <div className={classes.contentLayout}>
-          <TempContent title={title}/>
+          <BannerContent title={title}/>
             </div>     }
     </div>);
   };

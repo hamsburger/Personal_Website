@@ -1,8 +1,9 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
-import Nutrient_Monitor_Search_Table from "../../../images/nutrient_monitor_searchtable.PNG";
-import Nutrient_Monitor_Interface from "../../../images/nutrient_monitor_interface.PNG";
-import Fugitives from "../../../images/gold_face.png";
+import Nutrient_Monitor_Search_Table from "../images/nutrient_monitor_searchtable.PNG";
+import Nutrient_Monitor_Interface from "../images/nutrient_monitor_interface.PNG";
+import Fugitives from "../images/gold_face.png";
+
 export default ({styles, useStyles}) => {
     const parentClass = styles();
     const classes = useStyles();

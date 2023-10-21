@@ -1,13 +1,24 @@
 import React, {useState, useRef, useEffect,  useMemo, useLayoutEffect} from "react";
-import ContentGrid from "./ContentPage/contentGrid";
-import initData from "./ContentPage/bannerTitles";
+import ContentGrid from "./LandingPage/ContentPage/contentGrid";
+import initData from "./LandingPage/ContentPage/bannerTitles";
 import { makeStyles } from "@material-ui/core/styles";
-import TempContent from "./ContentPage/bannerContent";
-import Intro from "./IntroPage/intro";
+import TempContent from "./LandingPage/ContentPage/bannerContent";
+import Intro from "./LandingPage/IntroPage/intro";
 import AppBar from "@material-ui/core/AppBar";
 import ToolBar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Drawer from "@material-ui/core/Drawer";
+import Project from "./ProjectPage/main";
+import Music from "./MusicPage/music";
+import Blog from "./BlogPage/blog";
+
+
+import {
+  BrowserRouter as Router,
+  Link,
+  Routes,
+  Route
+} from "react-router-dom"
 
 // import LazyLoad from "react-lazyload";
 
@@ -52,32 +63,67 @@ const Scroll = (e) => {
 };
 
 const mainStyles = makeStyles((theme)=>({
-  
+  button : {
+    background: "transparent",
+    textUnderlineOffset: "none"
+  },
   primaryToolBar : {
     background: "white",
   },
 }));
 
+const LandingPage = () => {
+  return (<div className="Main">
+  <div id="intro">
+      <Intro/>
+    </div>
+    <ContentGrid/>
+  </div>)
+
+}
 const Main = () => {
   const [initSpeed, updateInitSpeed] = useState(true);
   const classes = mainStyles();
 
-
   return (
-  <React.Fragment>
-  <AppBar position="static" id="HomeBar">
-    <ToolBar className={classes.primaryToolBar}>
-      <Button style={{...{background: "transparent"}}} href="#BasicInfo">Home</Button>
-      {/* <Button style={{background: "transparent"}}>Home</Button> */}
-    </ToolBar>
-  </AppBar>
-  <div className="Main">
-    <div id="intro">
-      <Intro/>
-    </div>
-    <ContentGrid/>
-  </div>
-  </React.Fragment>
+    <React.Fragment>
+    <Router>
+      <AppBar position="static" id="HomeBar">
+        <ToolBar className={classes.primaryToolBar}>
+            <Link to="/">
+              <Button className={classes.button} href="#BasicInfo">
+                Home
+              </Button>
+            </Link>
+            <Link to="/projects">
+              <Button className={classes.button}>
+                Projects
+              </Button>
+            </Link>  
+            <Link to="/blog">
+              <Button className={classes.button}>
+                Blog
+              </Button> 
+            </Link>
+          
+            <Link to="/music">
+              <Button className={classes.button}>
+                Music
+              </Button>
+            </Link> 
+          {/* <Button style={{background: "transparent"}}>Home</Button> */}
+        </ToolBar>
+      </AppBar>
+
+      <Routes>
+        <Route path="/projects/*" element={<Project/>}/>
+        <Route path="/blog" element={<Blog/>}/>
+        <Route path="/music" element={<Music/>}/>
+        <Route path="/" element={<LandingPage/>}/>
+      </Routes>
+
+    </Router>
+    </React.Fragment>
   );
 };
 
