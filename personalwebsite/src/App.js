@@ -1,6 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
-import AppBar from "@material-ui/core/Appbar";
+import logo from './logo.svg';           
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 import Button from "@material-ui/core/Button";
 import { useCustomTheme, CustomThemeProvider }  from "./Contexts/theme_context";
@@ -19,9 +18,6 @@ import Main from "./Components/main";
 import './App.css';
 
 const layoutStyles = makeStyles((theme) => ({
-  AppBar : {
-
-  }, 
   ButtonGroup : {
     width: "100vw",
     flexWrap: "wrap",
