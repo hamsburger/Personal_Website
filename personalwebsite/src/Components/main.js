@@ -129,6 +129,7 @@ const Main = () => {
   const [isToolBarHidden, updateToolBarHidden] = useState(false); 
   const classes = mainStyles({isToolBarHidden : isToolBarHidden});
   const routeDictionary = mainRoute;
+  console.log("hi")
 
   return (
     <React.Fragment>
@@ -145,7 +146,7 @@ const Main = () => {
                 Home
               </Button>
             </Link>
-            <LinkGenerator customPathName="/"/>
+            <LinkGenerator customPath="/"/>
             
             {/* <Link to="/projects">
               <Button className={classes.button}>
@@ -177,7 +178,7 @@ const Main = () => {
             <MenuIcon />
           </IconButton>  
           }
-            <RouteGenerator customPathName="/" routeDict={mainRoute}/>
+            <RouteGenerator customPath="/" routeDict={mainRoute}/>
             {/* <Route path="/projects/*" element={<Project/>}/>
             <Route path="/blog" element={<Blog/>}/>
             <Route path="/music" element={<Music/>}/>

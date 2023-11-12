@@ -16,20 +16,20 @@ const linkStyles = makeStyles((theme)=>({
     }
   }));
   
-export default function LinkGenerator({ customPathName, customStyles, isDynamic = false}){
+export default function LinkGenerator({ customPath, customStyles, isDynamic = false}){
     /** This Component will generate links based on where it is in the App.
-     *  You can also define a customPathName to fix the links being generated.
+     *  You can also define a customPath to fix the links being generated.
       */
+     const location = useLocation();
     const classes = linkStyles();
-    const location = useLocation();
-    const pathName = customPathName || location.pathname;
+    const pathName = customPath || location.pathname;
     const routesToGenerate = useMemo(
       () => routeAccessor(pathName)
     , (!isDynamic) && [] || [pathName])
     return (
         <>
         {
-          Object.keys(routesToGenerate).filter(key => key !== "*" && key !== "/").map(key => 
+          Object.keys(routesToGenerate).filter(key => key !== "*" && key !== "content").map(key => 
                 <Link to={`${key}`}>
                   {
                     (!customStyles) && <Button className={classes.button}>

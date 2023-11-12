@@ -17,6 +17,6 @@ import projectRoute from "./thisRoute";
 
 export default () => {
     return (          
-            <RouteGenerator routeDict={projectRoute} customPathName={"/projects"}/>
+            <RouteGenerator routeDict={projectRoute} customPath={"/projects"}/>
     )
 }       

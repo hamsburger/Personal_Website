@@ -11,18 +11,20 @@ import AppRoutes from "../Components/allRoutes";
    * In the future, I want to make URLObjDict read from an external web request
   */
 
+const IS_SERVER = false;
+const DOMAIN_NAME = (IS_SERVER) && "https://harris-zheng-personal-website.vercel.app" || "http://localhost:3000"
 
 export const URLObjDict = {
     "projects" : {
       "LinkedIn_Job_Analysis" : {
             "Job Dashboard" : {
-              url : "https://harris-zheng-personal-website.vercel.app/tableau_dashboards/tableau_job_dashboard.html",
+              url : `${DOMAIN_NAME}/tableau_dashboards/tableau_job_dashboard.html`,
             },
             "Bigram Trigram Dashboard" : {
-              url: "https://harris-zheng-personal-website.vercel.app/tableau_dashboards/tableau_gram_dashboard.html",
+              url: `${DOMAIN_NAME}/tableau_dashboards/tableau_gram_dashboard.html`,
             },
             "Powerpoint Presentation" : {
-              url: "https://harris-zheng-personal-website.vercel.app/ppt_presentations/ppt_job_presentation.html"
+              url: `${DOMAIN_NAME}/ppt_presentations/ppt_job_presentation.html`
             }
       },
       "ECE2T2_Survey" : [

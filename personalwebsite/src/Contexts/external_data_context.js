@@ -6,17 +6,18 @@ import PPTFetcher from "../DataFetchers/pptFetcher";
 const ProjectContext = createContext(null);
 
 export default function ProjectProvider({ urlRouteDict, children }){
-    const [projectData, updateProjects] = useState([]);
-    let fileExtensionPattern = /\.[0-9a-z]+$/i
+    const [urlRouteDictCopy, updateURLRouteDict] = useState(urlRouteDict);
 
+    let fileExtensionPattern = /\.[0-9a-z]+$/i
+    let promises = []
     function findAndFetchURLs(dictObj){
         /** Assumption: All URIs exist at leaf nodes */
-        if (dictObj === undefined) return
+        if (dictObj === undefined) return true
         
         if (!dictObj.hasOwnProperty("url")){
-            Object.keys(dictObj).forEach((elem) => {
-                findAndFetchURLs(dictObj[elem])
-            })
+            return Object.keys(dictObj).every((key) => (
+                findAndFetchURLs(dictObj[key])
+            ))
         } else {
             let matchString = dictObj.url.match(fileExtensionPattern)[0]
             switch (matchString.toLowerCase()){
@@ -26,22 +27,27 @@ export default function ProjectProvider({ urlRouteDict, children }){
                     // promises.push(HTMLFetcher(
                     //     urlObj
                     // ));
-                    HTMLFetcher(
+                    promises.push(HTMLFetcher(
                         dictObj
                     ).then((elem) => {
                         dictObj['rendered_content'] = elem
-                    }).catch(e => { throw e })
-                    return;
+                        return urlRouteDict
+                    }).catch(e => { throw e }))
+                    break;
                 default:
                     throw Error("Unknown Promise Type: ", dictObj.type)
          
             }      
+            return true
         }
 
     }
-    
-    findAndFetchURLs(urlRouteDict)
-
+    useEffect(() => {
+        findAndFetchURLs(urlRouteDict)
+        Promise.all(promises).then((routeDictObjs) => {
+            updateURLRouteDict(routeDictObjs.slice(-1)[0])
+        })
+    }, [])
         // for (let route of Object.keys(urlRouteDict)){
         //         for (let [key, urlObjDict] of Object.entries(urlRouteDict[route])){
         //             for (let urlObj of urlObjDict){
@@ -77,9 +83,8 @@ export default function ProjectProvider({ urlRouteDict, children }){
         //         }), {})
         //     )
         //  })
-        //  .catch(e => {throw e})
-
-    return <ProjectContext.Provider value={urlRouteDict}>
+           //  .catch(e => {throw e})
+    return <ProjectContext.Provider value={urlRouteDictCopy}>
         {children}
     </ProjectContext.Provider>
 }

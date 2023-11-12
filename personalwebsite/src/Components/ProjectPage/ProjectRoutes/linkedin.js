@@ -60,10 +60,10 @@ export default function LinkedInJobAnalysis(){
                 <Typography variant="body1">
                     By analyzing a dataset instead of collecting job data case by case, we can unravel trends in the Data Analyst industry.
                     <br/><br/>
-                    In the below dashboard, we can inspect those trends:
+                    In the below dashboard, we can inspect those trends. Click on any button to load dashboards/presentations.
                 </Typography>
             </ContentWrapper>
-            <ProjectCarousel/>
+            <ProjectCarousel customPath="/projects/LinkedIn_Job_Analysis"/>
             {/* <CustomDocViewer uri="http://localhost:3000/ppt_presentations/ppt_job_presentation.html"/> */}
         </ContentBackground>
     </>

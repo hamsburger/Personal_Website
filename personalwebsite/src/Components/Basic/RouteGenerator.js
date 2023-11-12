@@ -4,21 +4,20 @@ import AppRoutes from "../allRoutes";
 import { Route, Routes } from "react-router-dom";
 import { routeAccessor } from "../../Helpers/routeAccesor";
 
-export default function RouteGenerator({ customPathName, routeDict, isDynamic = false, isRelative = true}){
+export default function RouteGenerator({ customPath, routeDict, isDynamic = false, isRelative = true}){
        /** This Component will generate links based on where it is in the App.
-     *  You can also define a customPathName to fix the routes being generated.
+     *  You can also define a customPath to fix the routes being generated.
       */
-    const location = useLocation();
-    const pathName = customPathName || location.pathname;
+    const pathName = customPath;
     const routesToGenerate = useMemo(
         () => routeAccessor(pathName)    
     , (!isDynamic) && [] || [pathName])
     return (
         <Routes>
         {
-            Object.keys(routesToGenerate).map((key) => (
+            Object.keys(routesToGenerate).filter(key => key !== "content").map((key) => (
                 <Route path={
-                    (key === "*" || key === "/") && `${key}` || 
+                    (key === "*" ) && `${key}` || 
                     ((!isRelative) && `/${key}/*` || `${key}/*`)
                 } element={routeDict[key]}/>
               ))

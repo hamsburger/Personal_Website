@@ -8,21 +8,28 @@
 
 const AppRoutes = {
     "projects" : {
+        "content" : null,
         "ECE2T2_Survey" : {
+            "content": null,
         },
         "LinkedIn_Job_Analysis" : {
+            "content": null,
             "Job Dashboard" : null,
             "Bigram Trigram Dashboard" : null,
             "Powerpoint Presentation" : null
         },
         "*" : {
+            "content": null,
         } 
     },
     "music" : {
+        "content" : null,
     },
     "blog" : {
+        "content" : null,
     },
     "*" : {
+        "content" : null
     },
 }
 

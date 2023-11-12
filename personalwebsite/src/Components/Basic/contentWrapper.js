@@ -15,7 +15,7 @@ const wrapperStyles = makeStyles((theme) => ({
 }))
 
 export default function ContentWrapper(props){
-    const { children, isTextBox = true } = props; 
+    const { children, isTextBox = true} = props; 
     const classes = wrapperStyles({isTextBox: isTextBox})
     return <div className={classes.wrapper}>
         {children}

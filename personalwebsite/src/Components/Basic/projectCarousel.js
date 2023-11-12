@@ -1,11 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { Link, Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
 import { useData } from "../../Contexts/external_data_context";
-import CarouselItem from "./carouselItem";
 import ContentWrapper from "./contentWrapper";
-import { makeStyles } from "@material-ui/core";
+import { Typography, makeStyles } from "@material-ui/core";
 import LinkGenerator from "./LinkGenerator";
 import { routeAccessor } from "../../Helpers/routeAccesor";
 import { dictAccessor } from "../../Helpers/dictAccesor";
@@ -27,7 +26,7 @@ const carouselStyles = makeStyles((theme) => ({
     smtSpinnerCircle : {
         width: "50px",
         height: "50px",
-        position: "absolute",
+        position: "relative",
         margin: "20px",
         borderRadius: "50%",
         zIndex: 1,
@@ -54,17 +53,26 @@ const carouselStyles = makeStyles((theme) => ({
         }
       }
 }))
-export default function ProjectCarousel({ galleryMode = true }){
+export default function ProjectCarousel({ customPath, galleryMode = true }){
     /** 
      * @param {Object[]} urlObjects: 
      * @param {String} urlObjects[].url: URI of URL object
      * @param {String} urlObjects[].title: Title of URL object. This is matched with our routes to figure out what content we are actually rendering. 
     */
-    const classes = carouselStyles();
-    const desiredPathName = "/projects/LinkedIn_Job_Analysis";
+    const location = useLocation();
+    const [animation, triggerLoadAnimation] = useState(false);
     const data = useData();
-    const dataObjs = dictAccessor(desiredPathName, data)
+    // console.log("Custom Path:", customPath)
+    // console.log("Data:", data)
+    const classes = carouselStyles();
+    const routesToGenerate = routeAccessor(customPath)    
+    const dataObjs = dictAccessor(customPath, data)
+    let firstObj = Object.values(dataObjs)[0]
+    // console.log(Object.keys(firstObj))
+    // console.log("Routes to Generate", routesToGenerate)
+    // console.log("Data Objs", dataObjs);
 
+    
     // console.log(Object.values(dataObjs)[0]["rendered_content"])
 
     /** Can we return objects from states and use them? Instead of just expecting them to be components */
@@ -82,31 +90,31 @@ export default function ProjectCarousel({ galleryMode = true }){
             return (
                 <ContentWrapper isTextBox={true}>
                     <Box className={classes.buttonBox}>
-                        <LinkGenerator 
-                        customPathName={desiredPathName}
-                        customStyles={
+                        <LinkGenerator customPath={customPath} customStyles={
                             {
-                                variant: "contained"
+                                variant: "contained",
+                                onClick: () => triggerLoadAnimation(true)
                             }
                         }/>
                     </Box>
-                    <Box>
-                        <div className={classes.smtSpinnerCircle}>
-                            <div className={classes.smtSpinner}/>
-                        </div>
-                        <Routes>
-                            
-                                {  
-                                    /**
-                                     *  Create Routes to Elements for Links
-                                     */
-                                    Object.entries(dataObjs).map((dataObj, index) => {
-                                        return <Route path={`${dataObj[0]}/*`} element={dataObj[1]["rendered_content"]}/>
-                                                })
-                                }
-                            <Route path="*" element={Object.values(dataObjs)[0]["rendered_content"]}/>
-                        </Routes>
-                    </Box>
+                    {
+                        (animation) && (<div style={{position: "absolute"}}>
+                            <div className={classes.smtSpinnerCircle}>
+                                    <div className={classes.smtSpinner}/>
+                            </div>
+                        </div>)
+                    }
+                    <Routes>
+                    {  
+                        /**
+                         *  Create Routes to Elements for Links
+                         */ 
+                        Object.entries(dataObjs).map((dataObj, index) => {
+                            return <Route key={index} path={`${dataObj[0]}`} element={dataObj[1]["rendered_content"]}/>
+                        })
+                    }
+                        <Route path="*" element={<></>}/>
+                    </Routes>
                 </ContentWrapper>
             )
         default:
