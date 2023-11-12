@@ -62,9 +62,10 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     const location = useLocation();
     const [animation, triggerLoadAnimation] = useState(false);
     const data = useData();
-    // console.log("Custom Path:", customPath)
-    // console.log("Data:", data)
+    console.log("Custom Path:", customPath)
+    console.log("Data:", data)
     const classes = carouselStyles();
+    if (Object.keys(data).length === 0) return <></>
     const routesToGenerate = routeAccessor(customPath)    
     const dataObjs = dictAccessor(customPath, data)
     let firstObj = Object.values(dataObjs)[0]
@@ -113,7 +114,7 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
                             return <Route key={index} path={`${dataObj[0]}`} element={dataObj[1]["rendered_content"]}/>
                         })
                     }
-                        <Route path="*" element={<></>}/>
+                        <Route path="*" element={firstObj["rendered_content"]}/>
                     </Routes>
                 </ContentWrapper>
             )

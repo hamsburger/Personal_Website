@@ -6,7 +6,7 @@ import PPTFetcher from "../DataFetchers/pptFetcher";
 const ProjectContext = createContext(null);
 
 export default function ProjectProvider({ urlRouteDict, children }){
-    const [urlRouteDictCopy, updateURLRouteDict] = useState(urlRouteDict);
+    const [urlRouteDictCopy, updateURLRouteDict] = useState({});
 
     let fileExtensionPattern = /\.[0-9a-z]+$/i
     let promises = []

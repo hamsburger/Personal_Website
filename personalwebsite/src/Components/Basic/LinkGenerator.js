@@ -20,7 +20,7 @@ export default function LinkGenerator({ customPath, customStyles, isDynamic = fa
     /** This Component will generate links based on where it is in the App.
      *  You can also define a customPath to fix the links being generated.
       */
-     const location = useLocation();
+    const location = useLocation();  
     const classes = linkStyles();
     const pathName = customPath || location.pathname;
     const routesToGenerate = useMemo(
