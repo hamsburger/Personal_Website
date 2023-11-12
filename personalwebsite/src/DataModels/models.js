@@ -16,13 +16,13 @@ export const URLObjDict = {
     "projects" : {
       "LinkedIn_Job_Analysis" : {
             "Job Dashboard" : {
-              url : "./tableau_dashboards/tableau_job_dashboard.html",
+              url : "https://harris-zheng-personal-website.vercel.app/tableau_dashboards/tableau_job_dashboard.html",
             },
             "Bigram Trigram Dashboard" : {
-              url: "./tableau_dashboards/tableau_gram_dashboard.html",
+              url: "https://harris-zheng-personal-website.vercel.app/tableau_dashboards/tableau_gram_dashboard.html",
             },
             "Powerpoint Presentation" : {
-              url: "./ppt_presentations/ppt_job_presentation.html"
+              url: "https://harris-zheng-personal-website.vercel.app/ppt_presentations/ppt_job_presentation.html"
             }
       },
       "ECE2T2_Survey" : [
