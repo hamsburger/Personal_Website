@@ -16,13 +16,13 @@ export const URLObjDict = {
     "projects" : {
       "LinkedIn_Job_Analysis" : {
             "Job Dashboard" : {
-              url : "http://localhost:3000/tableau_dashboards/tableau_job_dashboard.html",
+              url : "./tableau_dashboards/tableau_job_dashboard.html",
             },
             "Bigram Trigram Dashboard" : {
-              url: "http://localhost:3000/tableau_dashboards/tableau_gram_dashboard.html",
+              url: "./tableau_dashboards/tableau_gram_dashboard.html",
             },
             "Powerpoint Presentation" : {
-              url: "http://localhost:3000/ppt_presentations/ppt_job_presentation.html"
+              url: "./ppt_presentations/ppt_job_presentation.html"
             }
       },
       "ECE2T2_Survey" : [
