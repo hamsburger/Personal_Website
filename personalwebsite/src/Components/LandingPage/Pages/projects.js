@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Divider from "@material-ui/core/Divider";
 import FrontEndDev from "./ProjectSections/frontEndDev";
 import DatabaseSkills from "./ProjectSections/databaseSkills";
-
+import LandingPage from "../../ProjectPage/main"
 
 const useStyles = makeStyles((theme) => ({
     headers: {
@@ -24,9 +24,5 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default ({ styles }) => {
-    return (<div>
-    <DatabaseSkills styles={styles} useStyles={useStyles}/>
-    <Divider/>
-    <FrontEndDev styles={styles} useStyles={useStyles}/>
-    </div>);
+    return (<LandingPage/>);
 };

@@ -1,41 +1,38 @@
 import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Harris from "./images/me.jpg";
+import Button from "@material-ui/core/Button";
 import clsx from "clsx";
 // import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
+import ContentWrapper from "../../Basic/contentWrapper";
 
 const basicInfoStyles = makeStyles((theme) => ({
     basicInfoLayout: {
-        [theme.breakpoints.up("sm")]:{
-            
-        },
-        [theme.breakpoints.down("sm")]:{
-            height: "100%",
-            position: "relative",
-            display: "flex",
-            justifyContent: "start",
-            flexWrap: "wrap"
-        }
+        position: "relative",
+        lineHeight: "20px",
+        height: "100%",
+        background: theme.palette.secondary.opaque,
+        padding: "20px"         
+
     },
     myImage : {
-        width: "100%"
+        maxHeight: "275px", 
+        border: "3px solid black"
     },
     imageContainer : {
         position: "relative",
-        [theme.breakpoints.up("sm")]:{
+        padding: 0,
+        [theme.breakpoints.up("xs")]:{
             float: "left",
-            maxWidth: "40%",
-            padding: "10px",
-            paddingTop: "25px",
-            paddingRight: "30px",
-            paddingBottom: "30px"
+            maxWidth: "45%",   
+            paddingRight: "30px",   
+            paddingBottom: "2px",
         },
-        [theme.breakpoints.down("sm")]:{
+        [theme.breakpoints.down("xs")]:{
             float: "none",
-            height: "50%",
             padding: 0,
-            paddingTop: "20px",
+            paddingTop: "10px",
             maxWidth: "100%",
         },
     },
@@ -44,32 +41,38 @@ const basicInfoStyles = makeStyles((theme) => ({
 export default ({ styles }) => {
     const parentClass = styles();
     const classes = basicInfoStyles();
-    return (<div className={classes.basicInfoLayout}>
-        <div className={classes.imageContainer}>
-            <img src={Harris} className={classes.myImage}/>
-        </div>
-        <div className={parentClass.paragraph}><Typography variant="h3" component="h5" className={parentClass.heading}>
-            About Myself
-        </Typography>
-        <Typography variant="body1" component="p">
-            I am Harris Zheng, a Third-Year Computer Engineering Student enrolled at UofT.
-            I am oddly proficient at learning about things that makes my life easier.    
-        </Typography>
-        <Typography variant="body1" component="p" style={{paddingTop: "10px"}}>
-            <Typography variant="body1" component="li">Front-End Dev</Typography>
-            <Typography variant="body1" component="li">Python Scripts</Typography>
-            <Typography variant="body1" component="li">Database Administration and SQL Queries</Typography>
-            
-            <Typography variant="body1" component="p" style={{paddingTop: "10px"}}>
-            Through my personal projects and the wonderful education at UofT, I have developed appreciation for technological skills that helps me conquer
-            my personal problems. I hope that by advertising myself and getting a job, I can expand my skills to a bigger stage, and emphathize with greater
-            problems that I have trouble understanding at the moment. 
+    return (
+        <ContentWrapper>
+            <div className={classes.imageContainer}>
+                <img src={Harris} className={classes.myImage}/>
+            </div>
+            <div className={parentClass.heading} style={{marginTop: "2px"}}>
+                <Typography variant="h3" component="h5" style={{letterSpacing: "3px"}}>
+                    About Myself
+                </Typography>
+            </div>
+            <Typography variant="body1" component="p">
+                I am an UofT 2023 Computer Engineering graduate.
             </Typography>
-
-            <Typography variant="body1" component="p" style={{paddingTop: "10px"}}>
-            In the light of my upcoming PEY Co-op Term in Summer 2021, I am open to any positions -- preferrably, I would like to start out as a <b>Systems/Database Administrator</b>. 
+            <br/>
+            <Typography variant="body1" component="p">
+                
+                I have <b>two years</b> of experience in the Automotive Data Analytics industry, as an<br/>Embedded Data Analyst at Geotab.
+                <br/><br/>
+                I am devoted to solving problems. And in order to do so, I put in relentless work to gather required 
+                intel/insights. Check out the problems I've solved through work, at school, and through personal projects in the{" "}
+                <a href="#Projects" onClick={
+                    ()=>
+                {}}> 
+                    next banner
+                </a>
+                . 
             </Typography>
-        </Typography>
-        </div>
-    </div>)
+            <br/>   
+            <Typography variant="body1" component="p">
+                In my spare time, I like to post music arrangements on musescore and work on various music projects.
+                My compositions have been performed around the world, in care homes, on YouTube, in different schools.  
+            </Typography>
+        </ContentWrapper>
+    )
 };

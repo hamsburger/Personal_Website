@@ -21,6 +21,7 @@ const menuStyles = makeStyles((theme) => ({
     fixedMenu: {
         position: "sticky",
         top: 0,
+        ...theme.typography.body2
     }
 }));
 export default () => {

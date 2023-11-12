@@ -15,15 +15,21 @@ export function CustomThemeProvider({ children }) {
           fontFamily: `futura-pt,Avenir,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif`,
           h1 : {
             ...defaultTheme.typography.h1,
-            fontSize: "3rem"
+            fontSize: "3rem",
+            fontWeight: "100",
+            fontFamily: "Raleway",
           },
           h2: {
             ...defaultTheme.typography.h2,
-            fontSize: "2rem"
+            fontSize: "2rem",
+            fontWeight: "100",
+            fontFamily: "Raleway",
           },
           h3 : {
             ...defaultTheme.typography.h3,
-            fontSize: "1.75rem"
+            fontSize: "1.75rem",
+            fontWeight: "100",
+            fontFamily: "Raleway",
           },
           h4 : {
             ...defaultTheme.typography.h4, 
@@ -49,9 +55,20 @@ export function CustomThemeProvider({ children }) {
             fontFamily: "Raleway",
           }
         },
+        palette: {
+          primary: {
+            main: "rgb(211,227,240)"
+          },
+          
+          secondary: {
+            main: "rgba(224,232,243, 1)",
+            opaque: "rgba(224,232,243, 0.8)"
+          }, 
+        },
         overrides : {
           MuiAppBar : { 
-          }
+          },
+          
         },
       });
 

@@ -8,27 +8,15 @@ import {
     useNavigate,
     useLocation
 } from "react-router-dom";
-import { Box } from "@material-ui/core";
-import { useTheme } from "@material-ui/core";
-import ProjectCard from '../card';
-import Projects from "./cardElements";
-import LandingPage from "./ProjectRoutes/landingPage";
+import Projects from "../allRoutes";
+import ProjectLandingPage from "./ProjectRoutes/landingPage";
+import ContentBackground from "../Basic/contentBackground";
+import { UIObjects } from "../../DataModels/models";
+import RouteGenerator from "../Basic/RouteGenerator";
+import projectRoute from "./thisRoute";
 
 export default () => {
-    const theme = useTheme();
-    const location = useLocation();
     return (          
-        <React.Fragment>
-        <Box id="Box_Background" style={{paddingLeft: "20px", paddingTop: "20px", background: "#f0f0f0"}}> 
-            <Routes>
-                {
-                    Projects.map((elem, index) => (
-                        <Route path={elem["projectRoute"]} element={`Hi ${index}`}/>
-                    ))
-                }
-                <Route path="/" element={<LandingPage/>}/>
-            </Routes>
-        </Box>
-        </React.Fragment>
+            <RouteGenerator routeDict={projectRoute} customPathName={"/projects"}/>
     )
-}
+}       

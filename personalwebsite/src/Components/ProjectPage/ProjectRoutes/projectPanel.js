@@ -1,26 +1,27 @@
 import React from "react";
 import { Box, Typography } from "@material-ui/core";
-import ProjectCard from '../../card';
-import Projects from "../cardElements";
-
+import ProjectCard from '../../Basic/card';
+import { projectCardElements } from "../../../DataModels/models"; 
+import { dictAccessor } from "../../../Helpers/dictAccesor";
 
 export default function ProjectPanel({ isHighlight = true }){
-    let currentPathName = "/projects";
+    let desiredPathName = "/projects"
+    let UIComponents = dictAccessor(desiredPathName, projectCardElements)
     return (
         <React.Fragment>
             <Box id="ProjectPanelArea" style={(isHighlight) ? {} : {marginTop: "100px"}}>
-                <Typography variant="h2">
+                <Typography variant="h3" style={{letterSpacing: "5px"}}>
                    { (isHighlight) ? "Highlights 🌟" : "Other Projects 👨‍💻" }
                 </Typography>         
                 <Box id="ProjectPanel"  style={{
                     display: "flex",
                     justifyContent:"flex-start", 
-                    flexWrap:"nowrap",
+                    flexWrap:"wrap",
                     marginTop: "10px"
                 }}>
-                    {Projects.filter(elem => elem.isHighlight == isHighlight).map((elem) => {
-                        const pathNavigate = `${currentPathName}/${elem["projectRoute"]}` 
-                        return <ProjectCard {...elem} projectRoute={pathNavigate}></ProjectCard>
+                    {Object.entries(UIComponents).map((elem) => {
+                        const pathNavigate = `${desiredPathName}/${elem[0]}` 
+                        return <ProjectCard {...elem[1]} projectRoute={pathNavigate}></ProjectCard>
                     })}
                 </Box>
             </Box>

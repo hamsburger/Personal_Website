@@ -12,9 +12,7 @@ const basicStyles = makeStyles((theme) => ({
         marginBottom: "20px",
     },
     paragraph : {
-        paddingTop: "20px",
-        paddingLeft: "10px",
-        paddingBottom: "20px",
+
     }, 
     projectLink : {
         paddingTop: "20px", 
@@ -32,6 +30,7 @@ export default ({ title }) => {
     let textStyles = {
     };
     switch (title){
+    
         case "BasicInfo":
             element = <BasicInfo styles={basicStyles}/>
             break

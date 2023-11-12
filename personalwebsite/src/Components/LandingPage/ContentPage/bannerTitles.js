@@ -9,7 +9,7 @@ export default [
     id: 2,
     title: "Projects",
     seconds: 0.5,
-  },
+  },  
   {
     id: 3,
     title: "Interests",
