@@ -13,8 +13,6 @@ const animationStyles = makeStyles((theme) => ({
     /* animation: bouncyBox 3s ease-out; */
     position: "absolute",
     zIndex: 2,
-    animation: (props) =>
-      `expandCircle ${props.delay}s ease-out 0.5s forwards`
   },
 
   rippleCircle: {

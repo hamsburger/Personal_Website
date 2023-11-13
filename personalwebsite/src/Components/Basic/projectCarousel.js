@@ -108,7 +108,7 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
                     <Routes>
                     {  
                         /**
-                         *  Create Routes to Elements for Links
+                         *  Create Routes to Elements for Links     
                          */ 
                         Object.entries(dataObjs).map((dataObj, index) => {
                             return <Route key={index} path={`${dataObj[0]}`} element={dataObj[1]["rendered_content"]}/>

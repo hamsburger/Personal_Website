@@ -53,10 +53,10 @@ const introStyles = makeStyles((theme) => ({
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        overflowX: "none",
+        overflowX: "hidden",
         overflowY: "overflow",
         height: "70vh",
-        width: "130vw",
+        width: "100%",
         backgroundImage: `url(${Books})`,
         backgroundSize: "auto 100%"
     },

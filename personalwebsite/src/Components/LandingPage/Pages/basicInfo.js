@@ -18,6 +18,7 @@ const basicInfoStyles = makeStyles((theme) => ({
     },
     myImage : {
         maxHeight: "275px", 
+        width: "100%",
         border: "3px solid black"
     },
     imageContainer : {
