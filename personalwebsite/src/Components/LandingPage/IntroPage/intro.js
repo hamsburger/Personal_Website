@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RippleCircle from "../../Animations/RippleCircle";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
@@ -82,9 +82,22 @@ const introStyles = makeStyles((theme) => ({
 export default function Intro() {
     const classes = introStyles();
     const theme = useTheme();
+    const [width, setWidth] = useState(window.innerWidth);
+
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+    const isMobile = width <= 768;
     return (
         <div id="intro" className={classes.intro}>
-            <TheAnimations/> 
+            {(!isMobile) && <TheAnimations/>}
             <div className={classes.introText}>
                 <Typography style={
                     {

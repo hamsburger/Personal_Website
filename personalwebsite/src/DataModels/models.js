@@ -3,13 +3,13 @@ import AppRoutes from "../Components/allRoutes";
 // import Routes from "../Components/allRoutes"
 
 
-  /** 
-   * @param {Object[]} URLObjDict: Obj
-   * @param {String} URLObjDict[].title: Title of URL object. This is matched with our routes to figure out what content we are actually rendering. 
-   * @param {String=} URLObjDict[].uri: URI of URL object
-   * 
-   * In the future, I want to make URLObjDict read from an external web request
-  */
+/** 
+ * @param {Object[]} URLObjDict: Obj
+ * @param {String} URLObjDict[].title: Title of URL object. This is matched with our routes to figure out what content we are actually rendering. 
+ * @param {String=} URLObjDict[].uri: URI of URL object
+ * 
+ * In the future, I want to make URLObjDict read from an external web request
+*/
 
 const IS_SERVER = true;
 const DOMAIN_NAME = (IS_SERVER) && "https://harris-zheng-personal-website.vercel.app" || "http://localhost:3000"
