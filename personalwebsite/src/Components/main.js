@@ -131,6 +131,13 @@ const Main = () => {
   const routeDictionary = mainRoute;
   console.log("hi")
 
+  useEffect(() => {
+    window.addEventListener('resize', (e) => {
+      e.stopImmediatePropagation();
+      e.stopPropagation();
+    }, true);
+  }, []);
+
   return (
     <React.Fragment>
     <Router>

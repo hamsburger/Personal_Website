@@ -72,7 +72,8 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     
     const callback = (m) => {
         let allAs = document.querySelectorAll("a")
-        console.log("Adding target = blank to all link tags", allAs)
+        console.log(m)
+        // console.log("Adding target = blank to all link tags", allAs)
         for (let a of allAs){
             a["target"] = "blank"
         }
@@ -80,17 +81,23 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
 
     const presentationObserver = (node) => {
         if (!node) return;
+        
         let obj = node
-        console.log("Current Obj!", obj)
         var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
         if( !obj || obj.nodeType !== 1 ) return; 
-          
+         
+        // let old_element = document.getElementById(obj.id)
+        // let new_element  = old_element.cloneNode(true);
+        // old_element.parentNode.replaceChild(new_element, old_element)
         if( MutationObserver ){
             // define a new observer
             var mutationObserver = new MutationObserver(callback)
         
             // have the observer observe for changes in children
-            mutationObserver.observe( obj, { childList: true, subtree:true })
+            mutationObserver.observe( obj, 
+                { childList: true, subtree:true}
+                // {attributes: true}
+            )
             return mutationObserver
         }
         
