@@ -79,6 +79,8 @@ import 'react-pdf/dist/Page/AnnotationLayer.css';
 //       </div>
 //     )
 // };
+
+
 const PDFViewer = ({ url }) => {
     console.log(url)
     return <DocViewer
