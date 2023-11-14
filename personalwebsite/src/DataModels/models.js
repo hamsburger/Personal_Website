@@ -24,7 +24,7 @@ export const URLObjDict = {
               url: `${DOMAIN_NAME}/tableau_dashboards/tableau_gram_dashboard.html`,
             },
             "Powerpoint Presentation" : {
-              url: `${DOMAIN_NAME}/ppt_presentations/ppt_job_presentation.html`
+              url: `${DOMAIN_NAME}/ppt_presentations/ppt_job_presentation.pdf`
             }
       },
       "ECE2T2_Survey" : [

@@ -4,7 +4,7 @@ import ContentBackground from "../../Basic/contentBackground";
 import Typography from "@material-ui/core/Typography";
 import { CustomTableauRenderer } from "../ProjectFiles/Linkedin_Data_Analysis/ProjectElements/tableau_job_dashboard";
 import { Divider, makeStyles, useTheme } from "@material-ui/core";
-import DocViewer,  { DocViewerRenderers } from  "react-doc-viewer";
+// import DocViewer,  { DocViewerRenderers } from  "react-doc-viewer";
 import ProjectCarousel from "../../Basic/projectCarousel";
 const listOfElements = [];
 // const TableauJobDashboard = require("./tableau_job_dashboard.html");

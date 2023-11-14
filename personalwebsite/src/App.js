@@ -16,6 +16,7 @@ import {
 
 import Main from "./Components/main";
 import './App.css';
+import './textLayer.css'
 
 const layoutStyles = makeStyles((theme) => ({
   ButtonGroup : {

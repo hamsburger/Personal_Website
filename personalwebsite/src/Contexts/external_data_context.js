@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { createContext, useContext } from "react";
 import HTMLFetcher from "../DataFetchers/htmlFetcher";
-import PPTFetcher from "../DataFetchers/pptFetcher";
+import PDFFetcher from "../DataFetchers/pdfFetcher";
+
 
 const ProjectContext = createContext(null);
 
@@ -28,6 +29,14 @@ export default function ProjectProvider({ urlRouteDict, children }){
                     //     urlObj
                     // ));
                     promises.push(HTMLFetcher(
+                        dictObj
+                    ).then((elem) => {
+                        dictObj['rendered_content'] = elem
+                        return urlRouteDict
+                    }).catch(e => { throw e }))
+                    break;
+                case ".pdf":
+                    promises.push(PDFFetcher(
                         dictObj
                     ).then((elem) => {
                         dictObj['rendered_content'] = elem
