@@ -81,12 +81,11 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
 
     const presentationObserver = (node) => {
         if (!node) return;
-        
         let obj = node
         var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
         if( !obj || obj.nodeType !== 1 ) return; 
-         
-        // let old_element = document.getElementById(obj.id)
+        // let proxy_renderer = document.getElementById("proxy-renderer")
+        
         // let new_element  = old_element.cloneNode(true);
         // old_element.parentNode.replaceChild(new_element, old_element)
         if( MutationObserver ){
@@ -102,7 +101,7 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
         }
         
         // browser support fallback
-            else if( window.addEventListener ){
+        else if( window.addEventListener ){
             obj.addEventListener('DOMNodeInserted', callback, false)
         }
 

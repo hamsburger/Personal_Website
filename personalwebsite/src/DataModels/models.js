@@ -11,7 +11,7 @@ import AppRoutes from "../Components/allRoutes";
  * In the future, I want to make URLObjDict read from an external web request
 */
 
-const IS_SERVER = false;
+const IS_SERVER = true;
 const DOMAIN_NAME = (IS_SERVER) && "https://harris-zheng-personal-website.vercel.app" || "http://localhost:3000"
 
 export const URLObjDict = {
