@@ -14,9 +14,10 @@ const AppRoutes = {
         },
         "LinkedIn_Job_Analysis" : {
             "content": null,
+            "Powerpoint Presentation" : null,
             "Job Dashboard" : null,
             "Bigram Trigram Dashboard" : null,
-            "Powerpoint Presentation" : null
+            
         },
         "*" : {
             "content": null,

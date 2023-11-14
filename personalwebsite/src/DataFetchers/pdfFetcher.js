@@ -91,7 +91,8 @@ const PDFViewer = ({ url }) => {
         config={{
             header: {
                 disableHeader: true
-            }
+            },
+            pdfVerticalScrollByDefault: false
         }}
         documents={[
             { "uri": url },
@@ -106,11 +107,14 @@ export default function PDFFetcher(urlObj){
      * @param {String} urlObj.title: Title of URL object. This is matched with our routes to figure out what content we are actually rendering. 
      * @returns {Object.<String, ReactElement>} 
      * fetched data with new data.
-     * 
+     *  
      */
     return new Promise((resolve, reject) => {
         // resolve(<PDFDoc urlObj={urlObj}/>)
         resolve(<div style={{minHeight: "500px", 
-                             marginTop: "30px"}}><PDFViewer url={urlObj.url}/></div>)      
+                             marginTop: "30px"}}>
+                    <PDFViewer 
+                    url={urlObj.url}/>
+                </div>)      
     })
 }

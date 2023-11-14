@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import { Link, Route, BrowserRouter as Router, Routes, useLocation } from "react-router-dom";
@@ -65,10 +65,56 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     console.log("Custom Path:", customPath)
     console.log("Data:", data)
     const classes = carouselStyles();
+    const presentationRef = useRef(null)
     if (Object.keys(data).length === 0) return <></>
     const routesToGenerate = routeAccessor(customPath)    
     const dataObjs = dictAccessor(customPath, data)
-    let firstObj = Object.values(dataObjs)[0]
+    
+    const callback = (m) => {
+        let allAs = document.querySelectorAll("a")
+        console.log("Adding target = blank to all link tags", allAs)
+        for (let a of allAs){
+            a["target"] = "blank"
+        }
+    }
+
+    const presentationObserver = (node) => {
+        if (!node) return;
+        let obj = node
+        console.log("Current Obj!", obj)
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+        if( !obj || obj.nodeType !== 1 ) return; 
+          
+        if( MutationObserver ){
+            // define a new observer
+            var mutationObserver = new MutationObserver(callback)
+        
+            // have the observer observe for changes in children
+            mutationObserver.observe( obj, { childList: true, subtree:true })
+            return mutationObserver
+        }
+        
+        // browser support fallback
+            else if( window.addEventListener ){
+            obj.addEventListener('DOMNodeInserted', callback, false)
+        }
+
+    }
+
+    // Ref functions run after every render
+    let FirstObj = React.cloneElement(dataObjs["Powerpoint Presentation"]["rendered_content"], {ref: presentationObserver})
+
+    // observeDOM( listElm, function(m){ 
+    //     console.log("Observed DOM Change!")
+    //     console.log(m)
+        
+
+    //     m.  
+    //     console.clear();
+    //     console.log('Added:', addedNodes, 'Removed:', removedNodes);
+    // });
+
+
     // console.log(Object.keys(firstObj))
     // console.log("Routes to Generate", routesToGenerate)
     // console.log("Data Objs", dataObjs);
@@ -111,10 +157,12 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
                          *  Create Routes to Elements for Links     
                          */ 
                         Object.entries(dataObjs).map((dataObj, index) => {
+                            if (dataObj[0] === "Powerpoint Presentation") return;
                             return <Route key={index} path={`${dataObj[0]}`} element={dataObj[1]["rendered_content"]}/>
                         })
                     }
-                        <Route path="*" element={firstObj["rendered_content"]}/>
+                        <Route path="Powerpoint Presentation" element={FirstObj}/>
+                        <Route path="*" element={FirstObj}/>
                     </Routes>
                 </ContentWrapper>
             )
