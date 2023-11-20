@@ -13,7 +13,7 @@ import Website_Design_Nov_18_2023 from "../Components/BlogPage/Pages/Website_Des
 */
 
 const IS_SERVER = false;
-const DOMAIN_NAME = (IS_SERVER) && "https://harris-zheng-personal-website.vercel.app" || "http://localhost:3000"
+const DOMAIN_NAME = (IS_SERVER) && "" || ""
 
 /** TO-DO: Use Different URLs with Different Dictionary keys, e.g. urlExternal, urlUI, 
  * and don't test these keys in our DictLevelChecker. This way we can support both external 
