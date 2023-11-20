@@ -2,6 +2,7 @@ import React, {useState, useRef, useEffect,  useMemo, useLayoutEffect} from "rea
 import { makeStyles } from "@material-ui/core/styles";
 import BannerContent from "./bannerContent";
 import { Typography } from "@material-ui/core";
+import useMobile from "../../../Hooks/useMobile";
 
 const bannerStyles = makeStyles((theme)=>({
     arrow : {
@@ -52,21 +53,24 @@ const Banner = (props) => {
     const [canView, setCanView] = useState(true);
     const [arrow, setArrow] = useState("\u25BC");
     const [contentView, setContentView] = useState(true); 
+    const isMobile = useMobile();
     const classes = bannerStyles({...props, contentView: contentView});
     const e1 = useRef(null);
     useLayoutEffect(() => {
-      window.addEventListener("scroll", isInView);
-      window.addEventListener("load", isInView);
-      window.addEventListener("resize", isInView);
-      window.addEventListener("click", isInView);
-  
-      return () => { 
-        window.removeEventListener("load", isInView);
-        window.removeEventListener("scroll", isInView); 
-        window.removeEventListener("resize", isInView);
-        window.removeEventListener("click", isInView);
-      };
-      setCanView(true)
+
+      if (!isMobile) {
+        window.addEventListener("scroll", isInView);
+        window.addEventListener("load", isInView);
+        window.addEventListener("resize", isInView);
+        window.addEventListener("click", isInView);
+    
+        return () => { 
+          window.removeEventListener("load", isInView);
+          window.removeEventListener("scroll", isInView); 
+          window.removeEventListener("resize", isInView);
+          window.removeEventListener("click", isInView);
+        };
+      }
     }, []);
 
     const isInView = () => {

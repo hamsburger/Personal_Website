@@ -52,7 +52,7 @@ export default function Survey2T2({ tags, date }){
                 <Divider/>
 
                 {/* Date + Tags */}
-                <Box style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
+                <Box style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px 0px"}}>
                     <PrettyArticleHeading style={{fontSize: "1.2rem"}}>{date}</PrettyArticleHeading>  
                     <Box>
                         <PrettyArticleHeading style={{fontSize: "20px"}} display="inline">

@@ -11,7 +11,7 @@ const linkStyles = makeStyles((theme)=>({
       color: "white",
       textUnderlineOffset: "none",
       ...theme.typography.overline_pretty,
-      fontSize: "18px",
+      fontSize: "1rem",
       textDecoration: "underline",
       fontWeight: 500,
       height: "40px",

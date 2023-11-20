@@ -54,7 +54,7 @@ export default ({ styles }) => {
                 <img src={me} className={classes.myImage}/>
             </div>
             <ContentWrapper opacity={0}>
-                    <Typography variant="h1" style={{letterSpacing: "3px", fontSize: "2.5rem"}}>
+                    <Typography variant="h1" style={{letterSpacing: "3px"}}>
                         About Myself (Brief Overview)
                     </Typography>
                     <Typography variant="body1" component="p">
@@ -70,6 +70,7 @@ export default ({ styles }) => {
                     finding insights about the{" "}<a href="/projects/LinkedIn_Job_Analysis" target="_blank">
                     Data Analyst Job Industry</a>, or building this website to stand out a little more... I'm actively looking for new things to do and accomplish.
                     Currently I'm learning to data scrape Instagram and exploring Dashboarding Tool Streamlit in hopes to learn more about my favourite content creators. </Typography>
+                    <br/>
                     <Typography variant="h3">Music</Typography>
                     <Typography variant="body1">I go mad on the piano/keyboard. My typing speed is ~100BPM, which certainly helps on the piano but I take more pride
                     in being able to make emotional connections in music. My popular sheet music average thousands of views on MuseScore and my original music/arrangements

@@ -16,7 +16,7 @@ import {
   Paper, Box, Typography, 
   List, ListItem, ListSubheader, ListItemIcon, ListItemText, 
   SvgIcon, Collapse } from "@material-ui/core";
-import { Send as SendIcon, LinkedIn, GitHub, YouTube, MusicNote, ExpandLess, ExpandMore } from "@material-ui/icons";
+import { Send as SendIcon, LinkedIn, GitHub, YouTube, MusicNote, ExpandLess, ExpandMore, Close, KeyboardHide, ArrowLeft } from "@material-ui/icons";
 import {
   BrowserRouter as Router,
   Link,
@@ -68,9 +68,9 @@ import SocialsList from "./Basic/Socials/socialsList";
 // );
 
 const mainStyles = makeStyles((theme)=>({
-  widthAdjust: {
-    width: (props) => (props.isToolBarHidden) ? "30px" : "100%"
-  },
+  // widthAdjust: {
+  //   width: (props) => (props.showToolBar) ? "30px" : "100%"
+  // },
   menuButtonBar: {
     position: "absolute",
     left: 0,
@@ -103,7 +103,7 @@ const mainStyles = makeStyles((theme)=>({
     background: "transparent",
     textUnderlineOffset: "none",
     ...theme.typography.overline_pretty,
-    fontSize: "18px",
+    fontSize: "1rem",
     color: "white",
     textDecoration: "underline",
     fontWeight: 500,
@@ -114,9 +114,9 @@ const mainStyles = makeStyles((theme)=>({
     }
   },
   primaryToolBar : {
-    display: (props) => (props.isToolBarHidden) ? "none" : "flex",
+    display: "flex",
     width: "100%",
-    // width: (props) => (props.isToolBarHidden) ? "auto" : "100%",
+    // width: (props) => (props.showToolBar) ? "auto" : "100%",
     [theme.breakpoints.down("sm")] : {
       flexDirection: "column",
       "& > *" : {
@@ -184,10 +184,10 @@ const mainStyles = makeStyles((theme)=>({
 
 const Main = () => {
   const [initSpeed, updateInitSpeed] = useState(true);
-  const [isToolBarHidden, updateToolBarHidden] = useState(false); 
+  const [showToolBar, updateToolBar] = useState(false); 
   const [isSocialsOpen, updateSocials] = useState(false);
   const [openMusic, updateMusicOpen] = useState(false);
-  const classes = mainStyles({isToolBarHidden : isToolBarHidden});
+  const classes = mainStyles({showToolBar : showToolBar});
   const routeDictionary = mainRoute;
 
   useEffect(() => {
@@ -204,22 +204,27 @@ const Main = () => {
     <React.Fragment>
     <Router>
       <ScrollToTop/>
-      <AppBar position="sticky">
+      <AppBar position="relative">
         <ToolBar className={classes.primaryToolBar} disableGutters={true}>
-            <IconButton className={classes.menuButtonBar} onClick={(e) => {updateToolBarHidden(!isToolBarHidden)}} edge="start" size="medium" 
+            <IconButton className={classes.menuButtonBar} onClick={(e) => {
+                if (showToolBar) updateSocials(false) // close event 
+                updateToolBar(!showToolBar)
+              }} edge="start" size="medium" 
                         color="inherit" aria-label="menu">
-              <MenuIcon />
+              {(showToolBar) && <Close/> || <MenuIcon/>}
             </IconButton>
-            <Link to="/">
-              <Button className={classes.button}>
-                Home
-              </Button>
-            </Link>
-            <LinkGenerator customPath="/"/>
-            <Box className={classes.socialsButton} onClick={() => updateSocials(!isSocialsOpen)}>
-              <Typography variant="h6" style={{fontWeight: 600, cursor: "pointer"}}>Socials</Typography>
-            </Box>
 
+
+            {(showToolBar) && <><Link to="/">
+                <Button className={classes.button}>
+                  Home
+                </Button>
+              </Link>
+              <LinkGenerator customPath="/"/>
+              <Box className={classes.socialsButton} onClick={() => updateSocials(!isSocialsOpen)}>
+                <Typography variant="h6" style={{fontWeight: 600, cursor: "pointer"}}>Socials</Typography>
+              </Box></>
+            }
             {/* <Link to="/projects">
               <Button className={classes.button}>
                 Projects
@@ -242,21 +247,7 @@ const Main = () => {
       <ProjectProvider urlRouteDict={URLObjDict}>
         <div className={classes.main}>
          {(isSocialsOpen) && <SocialsList/>}
-          
-          {
-          (isToolBarHidden) && <IconButton className={classes.menuButton} onClick={(e) => {
-              updateToolBarHidden(!isToolBarHidden)
-            }} size="medium" 
-              color="inherit"
-            >
-            <MenuIcon />
-          </IconButton>  
-          }
-            <RouteGenerator customPath="/" routeDict={mainRoute}/>
-            {/* <Route path="/projects/*" element={<Project/>}/>
-            <Route path="/blog" element={<Blog/>}/>
-            <Route path="/music" element={<Music/>}/>
-            <Route path="*" element={<LandingPage/>}/> */}
+         <RouteGenerator customPath="/" routeDict={mainRoute}/>
         </div>
       </ProjectProvider>
       <footer style={{textAlign: "center", padding: "20px", marginTop: "20px", zIndex: 1, position: "relative"}}>

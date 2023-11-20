@@ -44,7 +44,7 @@ export default function LinkedInJobAnalysis({ tags, date }){
                     2022 Job Market Analysis for Data Analysts
                 </PrettyArticleHeading>
                 <Divider/>
-                <Box style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
+                <Box style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "5px 0px"}}>
                     <PrettyArticleHeading style={{fontSize: "1.2rem"}}>{date}</PrettyArticleHeading>  
                     <Box>
                         <PrettyArticleHeading style={{fontSize: "20px"}} display="inline">

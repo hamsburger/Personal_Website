@@ -6,7 +6,7 @@ import SocialsItem from "./socialsItem";
 export default function SocialsList(){
     return (<Box style={
         {
-          position: "fixed",
+          position: "absolute",
           padding: "10px", 
           right: "0px", 
           width: "200px",

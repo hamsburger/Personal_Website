@@ -7,6 +7,7 @@ import Box from "@material-ui/core/Box";
 import Books from "./images/books.png";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import clsx from "clsx";
+import useMobile from "../../../Hooks/useMobile";
 const PERIOD = 2;
 
 const TheAnimations = () => {
@@ -52,7 +53,7 @@ const introStyles = makeStyles((theme) => ({
         position: 'relative', 
         alignItems: "center",
         overflowX: "hidden",
-        minHeight: "50vh",
+        minHeight: "40vh",
         height: "100%",
         width: "100%",
         // display: "flex",
@@ -63,7 +64,16 @@ const introStyles = makeStyles((theme) => ({
         backgroundSize: "auto 100%",
         paddingBottom: "20px",
     },
-    introText : {
+    introText: {
+        ...theme.overline_pretty,
+        // fontSize: `3rem`,
+        fontWeight: "100",
+        marginBottom: "40px",  
+        fontFamily: "Trebuchet,sans-serif",
+        marginLeft: "-5px",
+        cursor: "default"
+    },
+    introTextBox : {
         maxWidth: "800px",
         width: "80%",
         display: "flex",
@@ -82,51 +92,34 @@ const introStyles = makeStyles((theme) => ({
         marginTop: 0,
         "& > *" : {
             flex: "0 0 auto",
-        },
-        "& > p" : {
             marginBottom: "20px",
             fontWeight: 400,
+        },
+        "& > p" : {
+            // marginBottom: "20px",
+            // fontWeight: 400,
         },
         "& > a" : {
             marginTop: "30px"
         }
+    },
+    introText: {
+
     }
 }));
 export default function Intro() {
     const classes = introStyles();
     const theme = useTheme();
-    const [width, setWidth] = useState(window.innerWidth);
+    const isMobile = useMobile()
 
-
-    function handleWindowSizeChange() {
-        setWidth(window.innerWidth);
-    }
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange, true);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        }
-    }, []);
-    
-
-    const isMobile = width <= 768;
     // console.log(width)
     return (
         <div id="intro" className={classes.intro}>
-            {<TheAnimations/>}
-            <div className={classes.introText}>
-                <Typography style={
-                    {
-                        ...theme.overline_pretty,
-                        fontSize: `${70 * (theme.breakpoints.up("sm") ? 1 : 0.2)}px`,
-                        fontWeight: "100",
-                        fontFamily: "Trebuchet,sans-serif",
-                        marginLeft: "-5px",
-                        cursor: "default"
-                    }}
-                >
+            {(!isMobile) && <TheAnimations/>}
+            <div className={classes.introTextBox}>
+                <Typography variant="h1">
                     Harris Zheng
-            </Typography>
+                </Typography>
                 <Divider style={{background: "white", marginBottom: "20px", height: "2px"}}/>
                 <Typography variant="body1" style={{color: "rgba(255, 255, 255, 0.85)"}}>
                     UofT Bachelors in Computer Engineering 2023 <br/><br/>

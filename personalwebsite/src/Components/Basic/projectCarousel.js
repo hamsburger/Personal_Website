@@ -106,7 +106,7 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     switch (galleryMode) {
         case true:
             return (
-                <Box style={{paddingTop: "2 0px"}}>
+                <Box style={{paddingTop: "20px"}}>
                     <Box className={classes.buttonBox}>
                         <LinkGenerator customPath={customPath} customStyles={
                             {

@@ -15,33 +15,34 @@ export function CustomThemeProvider({ children }) {
           fontFamily: `futura-pt,Avenir,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif`,
           h1 : {
             ...defaultTheme.typography.h1,
-            fontSize: "3rem",
+            fontSize: "1.75rem",
             fontWeight: "500",
             letterSpacing: "7px", 
             fontFamily: "Raleway, sans-serif",
 
+            
           },
           h2: {
             ...defaultTheme.typography.h2,
-            fontSize: "2rem",
+            fontSize: "1.5rem",
             fontWeight: "400",
             letterSpacing: "3px",
             fontFamily: "Raleway, sans-serif",
           },
           h3 : {
             ...defaultTheme.typography.h3,
-            fontSize: "1.75rem",
+            fontSize: "1.3rem",
             letterSpacing: "2px",
             fontWeight: "300",
             fontFamily: "Raleway, sans-serif",
           },
           h4 : {
             ...defaultTheme.typography.h4, 
-            fontSize: "1.4rem"
+            fontSize: "1.2rem"
           },
           h5 : {
             ...defaultTheme.typography.h5,
-            fontSize: "1.32rem"
+            fontSize: "1rem"
           },
           body1: {
             ...defaultTheme.typography.body1,
