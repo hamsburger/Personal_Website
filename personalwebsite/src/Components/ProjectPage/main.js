@@ -10,7 +10,6 @@ import {
 } from "react-router-dom";
 import Projects from "../allRoutes";
 import ProjectLandingPage from "./ProjectRoutes/landingPage";
-import ContentBackground from "../Basic/contentBackground";
 import { UIObjects } from "../../DataModels/models";
 import RouteGenerator from "../Basic/RouteGenerator";
 import projectRoute from "./thisRoute";

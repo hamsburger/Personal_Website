@@ -8,30 +8,45 @@
 
 const AppRoutes = {
     "projects" : {
-        "content" : null,
         "ECE2T2_Survey" : {
-            "content": null,
         },
         "LinkedIn_Job_Analysis" : {
-            "content": null,
             "Powerpoint Presentation" : null,
             "Job Dashboard" : null,
             "Bigram Trigram Dashboard" : null,
             
         },
         "*" : {
-            "content": null,
         } 
     },
-    "music" : {
-        "content" : null,
-    },
     "blog" : {
-        "content" : null,
+        "How_I_Built_This_Website" : {
+            "title" : "How I Built This Website"
+        },
+        "Ordering_Plotly" : {
+            "title" : "How I Arranged Text Ordering in Plotly"
+        },
+        "Automated_Text_Clustering with Scikit-Learn": {
+            "title" : "Automated Text Clustering with Scikit-Learn"
+        },
+        "Relationships_Between_Dataset_Columns" : {
+            "title" : "How I Use Information Loss to Unravel Relationships between Dataset Columns"
+        },
+        "Audioreactive_Music" : {
+            "title" : "How I Use NASA Space Data to Create AudioVisual Music"
+        }, 
+        "Notion_Turn_Flimsy_Project_Ideas_Into_Reality" : {
+            "title" : "From Nothing to Everything: How I Turn Flimsy Project Ideas into Reality with Notion"
+        }
     },
+    "music" : {
+    },
+    "about myself" : {
+    },
+    
     "*" : {
-        "content" : null
     },
+      
 }
 
 export default AppRoutes;

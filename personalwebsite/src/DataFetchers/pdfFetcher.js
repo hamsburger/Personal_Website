@@ -86,7 +86,7 @@ const PDFViewer = ({ url }) => {
     return <DocViewer
         pluginRenderers={[PDFRenderer]} 
         style={{
-            position: "relative", zIndex: 2
+            position: "relative"
         }}  
         config={{
             header: {
@@ -109,12 +109,49 @@ export default function PDFFetcher(urlObj){
      * fetched data with new data.
      *  
      */
+    const callback = (m) => {
+        let allAs = document.querySelectorAll("a")
+        console.log(m)
+        // console.log("Adding target = blank to all link tags", allAs)
+        for (let a of allAs){
+            a["target"] = "blank"
+        }
+    }
+    
+    const presentationObserver = (node) => {
+        if (!node) return;
+        let obj = node
+        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
+        if( !obj || obj.nodeType !== 1 ) return; 
+        // let proxy_renderer = document.getElementById("proxy-renderer")
+        
+        // let new_element  = old_element.cloneNode(true);
+        // old_element.parentNode.replaceChild(new_element, old_element)
+        if( MutationObserver ){
+            // define a new observer
+            var mutationObserver = new MutationObserver(callback)
+        
+            // have the observer observe for changes in children
+            mutationObserver.observe( obj, 
+                { childList: true, subtree:true}
+                // {attributes: true}
+            )
+            return mutationObserver
+        }
+        
+        // browser support fallback
+        else if( window.addEventListener ){
+            obj.addEventListener('DOMNodeInserted', callback, false)
+        }
+    }
+
     return new Promise((resolve, reject) => {
         // resolve(<PDFDoc urlObj={urlObj}/>)
         resolve(<div style={{minHeight: "500px", 
-                             marginTop: "30px"}}>
+                             marginTop: "30px"}}
+                     ref={presentationObserver}>
                     <PDFViewer 
-                    url={urlObj.url}/>
+                    url={urlObj["url"]}/>
                 </div>)      
     })
 }

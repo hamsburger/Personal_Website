@@ -28,8 +28,8 @@ const carouselStyles = makeStyles((theme) => ({
         height: "50px",
         position: "relative",
         margin: "20px",
+        marginTop: "40px",
         borderRadius: "50%",
-        zIndex: 1,
     },
     
     smtSpinner : {
@@ -60,57 +60,22 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
      * @param {String} urlObjects[].title: Title of URL object. This is matched with our routes to figure out what content we are actually rendering. 
     */
     const location = useLocation();
-    const [animation, triggerLoadAnimation] = useState(false);
+    // const [animation, triggerLoadAnimation] = useState(false);
     const data = useData();
     console.log("Custom Path:", customPath)
     console.log("Data:", data)
     const classes = carouselStyles();
-    const presentationRef = useRef(null)
     if (Object.keys(data).length === 0) return <></>
-    const routesToGenerate = routeAccessor(customPath)    
-    const dataObjs = dictAccessor(customPath, data)
-    
-    const callback = (m) => {
-        let allAs = document.querySelectorAll("a")
-        console.log(m)
-        // console.log("Adding target = blank to all link tags", allAs)
-        for (let a of allAs){
-            a["target"] = "blank"
-        }
-    }
-
-    const presentationObserver = (node) => {
-        if (!node) return;
-        let obj = node
-        var MutationObserver = window.MutationObserver || window.WebKitMutationObserver;
-        if( !obj || obj.nodeType !== 1 ) return; 
-        // let proxy_renderer = document.getElementById("proxy-renderer")
-        
-        // let new_element  = old_element.cloneNode(true);
-        // old_element.parentNode.replaceChild(new_element, old_element)
-        if( MutationObserver ){
-            // define a new observer
-            var mutationObserver = new MutationObserver(callback)
-        
-            // have the observer observe for changes in children
-            mutationObserver.observe( obj, 
-                { childList: true, subtree:true}
-                // {attributes: true}
-            )
-            return mutationObserver
-        }
-        
-        // browser support fallback
-        else if( window.addEventListener ){
-            obj.addEventListener('DOMNodeInserted', callback, false)
-        }
-
-    }
-
+    const routesToGenerate = routeAccessor(customPath) 
+    let dataObjs = dictAccessor(customPath, data)
+        if (dataObjs.hasOwnProperty("urlsExternal")){
+            delete dataObjs["urlsExternal"]
+        }      
+    console.log(dataObjs)
+    // console.log(Object.values(dataObjs))   
     // Ref functions run after every render
-    let FirstObj = React.cloneElement(dataObjs["Powerpoint Presentation"]["rendered_content"], {ref: presentationObserver})
-
-    // observeDOM( listElm, function(m){ 
+    let firstObj = Object.values(dataObjs)[0]["urlsExternal"][0]["rendered_content"]
+   // observeDOM( listElm, function(m){ 
     //     console.log("Observed DOM Change!")
     //     console.log(m)
         
@@ -121,7 +86,7 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     // });
 
 
-    // console.log(Object.keys(firstObj))
+    console.log(dataObjs)
     // console.log("Routes to Generate", routesToGenerate)
     // console.log("Data Objs", dataObjs);
 
@@ -141,17 +106,16 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     switch (galleryMode) {
         case true:
             return (
-                <ContentWrapper isTextBox={true}>
+                <Box style={{paddingTop: "2 0px"}}>
                     <Box className={classes.buttonBox}>
                         <LinkGenerator customPath={customPath} customStyles={
                             {
                                 variant: "contained",
-                                onClick: () => triggerLoadAnimation(true)
                             }
                         }/>
                     </Box>
                     {
-                        (animation) && (<div style={{position: "absolute"}}>
+                        (<div style={{position: "absolute"}}>
                             <div className={classes.smtSpinnerCircle}>
                                     <div className={classes.smtSpinner}/>
                             </div>
@@ -163,14 +127,13 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
                          *  Create Routes to Elements for Links     
                          */ 
                         Object.entries(dataObjs).map((dataObj, index) => {
-                            if (dataObj[0] === "Powerpoint Presentation") return;
-                            return <Route key={index} path={`${dataObj[0]}`} element={dataObj[1]["rendered_content"]}/>
+                            if (dataObj[0] === "urlsExternal") return;
+                            return <Route key={index} path={`${dataObj[0]}`} element={dataObj[1]["urlsExternal"][0]["rendered_content"]}/>
                         })
                     }
-                        <Route path="Powerpoint Presentation" element={FirstObj}/>
-                        <Route path="*" element={FirstObj}/>
+                        <Route path="*" element={firstObj}/>
                     </Routes>
-                </ContentWrapper>
+                </Box>
             )
         default:
             return (<div>Hi</div>)

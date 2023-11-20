@@ -12,7 +12,11 @@ import Project from "./ProjectPage/main";
 import Music from "./MusicPage/music";
 import Blog from "./BlogPage/blog";
 import ScrollToTop from "./Basic/scrollToTop";
-import { Paper } from "@material-ui/core";
+import { 
+  Paper, Box, Typography, 
+  List, ListItem, ListSubheader, ListItemIcon, ListItemText, 
+  SvgIcon, Collapse } from "@material-ui/core";
+import { Send as SendIcon, LinkedIn, GitHub, YouTube, MusicNote, ExpandLess, ExpandMore } from "@material-ui/icons";
 import {
   BrowserRouter as Router,
   Link,
@@ -26,6 +30,7 @@ import { URLObjDict } from "../DataModels/models";
 import LinkGenerator from "./Basic/LinkGenerator";
 import RouteGenerator from "./Basic/RouteGenerator";
 import mainRoute from "./thisRoute";
+import SocialsList from "./Basic/Socials/socialsList";
 // import LazyLoad from "react-lazyload";
 
 
@@ -73,52 +78,105 @@ const mainStyles = makeStyles((theme)=>({
     [theme.breakpoints.down("sm")]:{
       top: "0%"
     },
-    [theme.breakpoints.up("sm")]:{
+    [theme.breakpoints.up("md")]:{
       top: "15%"
     },
+    color: "white",
     transform: "scale(1.3)"
   },
   menuButton: {
-    position: "absolute",
+    position: "fixed",
     left: 0,
     marginLeft: "10px",
+    color: "black",
     top: 0,
-    transform: "scale(1.3)",
+    zIndex: 1,
+    transform: "scale(1.6)",
     "&:hover" : {
       opacity: 1
     },
-    opacity: 0.03
+    opacity: 0.05,
+    // border: "3px solid black",
+    // background: "white"
   },
   button : {
     background: "transparent",
     textUnderlineOffset: "none",
     ...theme.typography.overline_pretty,
-    fontSize: "20",
+    fontSize: "18px",
+    color: "white",
     textDecoration: "underline",
     fontWeight: 500,
+    height: "40px",
+    "&:hover" : {
+      color: "black",
+      background: "rgba(255, 255, 255, 0.8)",
+    }
   },
   primaryToolBar : {
     display: (props) => (props.isToolBarHidden) ? "none" : "flex",
     width: "100%",
     // width: (props) => (props.isToolBarHidden) ? "auto" : "100%",
     [theme.breakpoints.down("sm")] : {
-      flexDirection: "column"
-  },
-    [theme.breakpoints.up("sm")] : {
-      flexDirection: "row"
+      flexDirection: "column",
+      "& > *" : {
+        marginBottom: "10px"
+      },
+      
     },
-    background: "white",
+    [theme.breakpoints.up("md")] : {
+      flexDirection: "row",
+    },
+    background: "rgba(0, 0, 0, 0.9)",
     boxShadow: "0 0 10px -3px rgba(0,0,0,0.8)",
     justifyContent: "center",
     zIndex: 2,
     flexWrap: "wrap",
+    color: "white",
+    // "& > *" : {
+    //   flexGrow: 1
+    // },
     "& > a": {
-      marginRight: "10px",
-      marginLeft: "10px"
+      marginRight: "20px",
+      marginLeft: "20px",
+      
+    },
+
+  },
+  socialsButton: {
+    position: "absolute", 
+    right: "10px",
+    transition: "all 0.1s",
+    borderRadius: "5px",
+    padding: "5px 10px",
+    [theme.breakpoints.down("sm")] : {
+      bottom: "0px",
+      right: "0px"
+    },
+    "&:hover" : {
+      background:"rgb(200, 200, 200)",
+      color: "black",
     }
   },
+  // menuBar : {
+  //   flexGrow: 20, 
+  //   display: "flex", 
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   [theme.breakpoints.down("sm")] : {
+  //       flexDirection: "column"
+  //   },
+  //   [theme.breakpoints.up("sm")] : {
+  //       flexDirection: "row"
+  //   },
+  //   "& > a": {
+  //     marginRight: "20px",
+  //     marginLeft: "20px",
+      
+  //   },
+  // },
   main : {
-    background: theme.palette.secondary.main
+    // background: theme.palette.secondary.main
   }
 }));
 
@@ -127,9 +185,10 @@ const mainStyles = makeStyles((theme)=>({
 const Main = () => {
   const [initSpeed, updateInitSpeed] = useState(true);
   const [isToolBarHidden, updateToolBarHidden] = useState(false); 
+  const [isSocialsOpen, updateSocials] = useState(false);
+  const [openMusic, updateMusicOpen] = useState(false);
   const classes = mainStyles({isToolBarHidden : isToolBarHidden});
   const routeDictionary = mainRoute;
-  console.log("hi")
 
   useEffect(() => {
     /** Not a good idea to stop propogation for event listeners on window.
@@ -152,12 +211,15 @@ const Main = () => {
               <MenuIcon />
             </IconButton>
             <Link to="/">
-              <Button className={classes.button} href="#BasicInfo">
+              <Button className={classes.button}>
                 Home
               </Button>
             </Link>
             <LinkGenerator customPath="/"/>
-            
+            <Box className={classes.socialsButton} onClick={() => updateSocials(!isSocialsOpen)}>
+              <Typography variant="h6" style={{fontWeight: 600, cursor: "pointer"}}>Socials</Typography>
+            </Box>
+
             {/* <Link to="/projects">
               <Button className={classes.button}>
                 Projects
@@ -179,12 +241,14 @@ const Main = () => {
       </AppBar>
       <ProjectProvider urlRouteDict={URLObjDict}>
         <div className={classes.main}>
+         {(isSocialsOpen) && <SocialsList/>}
+          
           {
           (isToolBarHidden) && <IconButton className={classes.menuButton} onClick={(e) => {
               updateToolBarHidden(!isToolBarHidden)
             }} size="medium" 
               color="inherit"
-              style={{zIndex: 3, position: "fixed"}}>
+            >
             <MenuIcon />
           </IconButton>  
           }
@@ -195,6 +259,24 @@ const Main = () => {
             <Route path="*" element={<LandingPage/>}/> */}
         </div>
       </ProjectProvider>
+      <footer style={{textAlign: "center", padding: "20px", marginTop: "20px", zIndex: 1, position: "relative"}}>
+                <Typography variant="h3">@2023 Harris Zheng</Typography>
+                <br/>
+                <br/>
+                <Typography variant="body1">Art Attributions:</Typography>
+                <br/>
+                <a href="https://www.vecteezy.com/vector-art/25015289-a-magic-shop-floating-above-the-clouds" target="blank_">
+                  A Magic Shop Floating Above The Clouds Vectors by Vecteezy</a>
+                <br/>
+                <a href="https://pixabay.com/vectors/books-coffee-cup-digital-art-pastel-7309019/" target="blank_">
+                  Books Coffee Cup Digital Art Pastel by Pixabay</a>
+                <br/>
+                <Typography variant="body1">Icons from <a href="https://icons8.com/" target="blank_">Icons8</a> and{" "} 
+                <a href="https://v4.mui.com/components/material-icons/#material-icons" target="blank_">
+                Material Icons</a></Typography>
+                <br/><br/>
+                <b>Built with React</b>
+      </footer>
 
     </Router>
     </React.Fragment>

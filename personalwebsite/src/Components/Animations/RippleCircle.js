@@ -12,12 +12,11 @@ const animationStyles = makeStyles((theme) => ({
   box: {
     /* animation: bouncyBox 3s ease-out; */
     position: "absolute",
-    zIndex: 2,
+    zIndex: 1,
   },
 
   rippleCircle: {
     position: "absolute",
-    zIndex: 1
   },
 
   rippleCircleOne: {

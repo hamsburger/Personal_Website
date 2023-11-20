@@ -30,18 +30,17 @@ export default ({ title }) => {
     let textStyles = {
     };
     switch (title){
-    
         case "BasicInfo":
-            element = <BasicInfo styles={basicStyles}/>
+            element = <BasicInfo title={title} styles={basicStyles}/>
             break
         case "ContactInfo":
-            element = <Contacts styles={basicStyles}/>
+            element = <Contacts title={title} styles={basicStyles}/>
             break
         case "Interests":
-            element = <Interests styles={basicStyles}/>
+            element = <Interests title={title} styles={basicStyles}/>
             break
         case "Projects":
-            element = <Projects styles={basicStyles}/> 
+            element = <Projects title={title} styles={basicStyles}/> 
             break
     }
     // <div style={{display: "flex", flexDirection: "column", alignItems: "center"}}>

@@ -7,7 +7,7 @@ export default function HTMLFetcher(urlObj){
      * fetched data with new data.
      * 
      */
-    return fetch(urlObj.url)
+    return fetch(urlObj["url"])
     .then(resp => resp.text())
     .then(text => {
         // console.log(text)
@@ -20,7 +20,7 @@ export default function HTMLFetcher(urlObj){
         //     document.body.appendChild(script)
         // }
         // return {["/" + urlObj.page + "/" + urlObj.title]: <div dangerouslySetInnerHTML={{__html: text}}/>}
-        return <div style={{zIndex: 2, position:"relative"}} dangerouslySetInnerHTML={{__html: text}}/> /** We can just update the object that we previously passed in */
+        return <div style={{position:"relative"}} dangerouslySetInnerHTML={{__html: text}}/> /** We can just update the object that we previously passed in */
             
     })
     .catch(e => { throw e })

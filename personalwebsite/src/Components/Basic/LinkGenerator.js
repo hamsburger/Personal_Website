@@ -8,24 +8,26 @@ import { routeAccessor } from "../../Helpers/routeAccesor";
 const linkStyles = makeStyles((theme)=>({
     button : {
       background: "transparent",
+      color: "white",
       textUnderlineOffset: "none",
       ...theme.typography.overline_pretty,
-      fontSize: "20",
+      fontSize: "18px",
       textDecoration: "underline",
       fontWeight: 500,
+      height: "40px",
+      "&:hover" : {
+        color: "black",
+        background: "rgba(255, 255, 255, 0.8)",
+      }
     }
   }));
   
 export default function LinkGenerator({ customPath, customStyles, isDynamic = false}){
     /** This Component will generate links based on where it is in the App.
      *  You can also define a customPath to fix the links being generated.
-      */
-    const location = useLocation();  
+      */  
     const classes = linkStyles();
-    const pathName = customPath || location.pathname;
-    const routesToGenerate = useMemo(
-      () => routeAccessor(pathName)
-    , (!isDynamic) && [] || [pathName])
+    const routesToGenerate = routeAccessor(customPath)
     return (
         <>
         {

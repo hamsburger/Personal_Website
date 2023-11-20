@@ -32,14 +32,20 @@ class DictLevelChecker {
         /**
          * Goal is to make sure all dictObject keys can be found in templateDict
          */
-        console.log("Dict:",dictObject)
-        console.log("Template:",templateDict)
+        // console.log("Dict:",dictObject)
+        // console.log("Template:",templateDict)
         if (!dictObject) return true // match
-        if (!templateDict) throw Error(`${dictPath} on level ${level} does not match with any key in` +
-        `template\n\tTitle:${this.title}`) // not match
-  
-        let dictKeys = Object.keys(dictObject)
+        
+        // no need to check props and externalURLs
+        let dictKeys = Object.keys(dictObject).filter(key => !key.match(/props|urlsExternal/g))
+        if (dictKeys.length === 0) return true  // match
+        if (!templateDict || Object.keys(templateDict).length === 0) throw Error(`${dictPath} on level ${level} does not match with any key in` +
+        `template\n\tTitle:${this.title}`) // not ma
+
         let templateKeys = Object.keys(templateDict)
+
+        
+        
         dictKeys.sort()
         templateKeys.sort()
         // if (dictKeys.length > templateKeys.length){ 
