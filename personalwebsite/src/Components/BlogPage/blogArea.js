@@ -51,7 +51,8 @@ const BlogArea = () => {
   let desiredPath = "/blog"
   let pages = (dictAccessor(desiredPath, propsDict))
   let allPages = (
-    Object.entries(pages).filter(elem => new Date(elem[1]["props"]["date"]).getTime() < Date.now()) 
+    []
+    // Object.entries(pages).filter(elem => new Date(elem[1]["props"]["date"]).getTime() < Date.now()) 
   ) // Release pages have dates authored before now
   // console.log(allPages)
   let allResults = allPages.map(elem => ({

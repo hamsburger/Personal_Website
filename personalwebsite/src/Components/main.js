@@ -246,6 +246,7 @@ const Main = () => {
       </AppBar>
       <ProjectProvider urlRouteDict={URLObjDict}>
         <div className={classes.main}>
+          
          {(isSocialsOpen) && <SocialsList/>}
          <RouteGenerator customPath="/" routeDict={mainRoute}/>
         </div>

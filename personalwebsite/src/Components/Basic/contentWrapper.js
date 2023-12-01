@@ -31,7 +31,7 @@ export default function ContentWrapper(props){
     const { children, isTextBox = true, opacity, styles={}, padding, minHeight, childrenMarginBottom, ...otherProps} = props;  // opacity, isTextBox
     const classes = wrapperStyles({isTextBox, opacity, padding, minHeight, childrenMarginBottom, ...otherProps})
     return <div className={classes.wrapper} style={styles} {...otherProps}>
-        {children}
+    {children}
     </div>
 
 }
