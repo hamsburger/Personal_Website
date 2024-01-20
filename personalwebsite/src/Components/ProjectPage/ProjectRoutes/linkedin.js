@@ -10,15 +10,16 @@ import ProjectCarousel from "../../Basic/projectCarousel";
 import PrettyArticleHeading from "../../Basic/prettyArticleHeading";
 import SocialsItem from "../../Basic/Socials/socialsItem";
 import { GitHub } from "@material-ui/icons";
+import linkStyles from "../../../Helpers/createLinkStylesArticle";
+import { SQLSocials } from "../../Basic/Socials/socialsList";
+
 const listOfElements = [];
 // const TableauJobDashboard = require("./tableau_job_dashboard.html");
-const linkedinDataAnalysis = makeStyles((theme) => ({
-    
-}));
 
 
 export default function LinkedInJobAnalysis({ tags, date }){
     const theme = useTheme()
+    const classes = linkStyles();
 
     // const CustomDocViewer = ({ uri }) => {
     //     return <DocViewer
@@ -53,7 +54,13 @@ export default function LinkedInJobAnalysis({ tags, date }){
                         <Typography variant="body1" display="inline" style={{marginLeft: "5px"}}>{tags.join(", ")}</Typography>
                     </Box>         
                 </Box>
-                <SocialsItem link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022"} Icon={<GitHub/>} title="GitHub Link"></SocialsItem>
+                <div className={classes.surveyLinks}>
+                    <SocialsItem link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022/blob/main/linkedin-job-data-processing-and-exploration.ipynb"} 
+                                Icon={<GitHub/>} 
+                                title={"GitHub Link"}/>
+                    <SQLSocials link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022/tree/main/bigquery_sql_files"} 
+                                title={"SQL queries"}></SQLSocials>
+                </div>
                 <Typography variant="h2" style={{...theme.headSpacing}}>
                     The Problem
                 </Typography>

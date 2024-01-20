@@ -1,8 +1,10 @@
 import { Box, List, ListSubheader, SvgIcon } from "@material-ui/core";
 import {ReactComponent as Musescore} from "../../Art/Icons/icons8-musescore.svg";
 import {ReactComponent as Spotify} from "../../Art/Icons/icons8-spotify.svg";
-import { Send as SendIcon, LinkedIn, GitHub, YouTube, MusicNote, ExpandLess, ExpandMore, Mail } from "@material-ui/icons";
+import { Send as SendIcon, LinkedIn, GitHub, YouTube, MusicNote, ExpandLess, ExpandMore, Mail,
+         Storage as Storage, LibraryBooks as JupyterNotebook } from "@material-ui/icons";
 import SocialsItem from "./socialsItem";
+
 export default function SocialsList(){
     return (<Box style={
         {
@@ -71,6 +73,19 @@ export function WorkSocials(){
   </>
 
 }
+
+export function JupyterSocials({link, title="Jupyter Notebook"}){
+  return <>
+    <SocialsItem title={title} Icon={<JupyterNotebook/>} link={link}/>
+  </>
+}
+
+export function SQLSocials({link, title="SQL"}){
+  return <>
+    <SocialsItem title={title} Icon={<Storage/>} link={link}/>
+  </>
+}
+
 
 export function ContactSocials({title, width="100%"}){
   return <>

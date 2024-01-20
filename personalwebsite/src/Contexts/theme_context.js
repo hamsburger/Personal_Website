@@ -70,6 +70,12 @@ export function CustomThemeProvider({ children }) {
             main: "rgba(224,232,243, 1)",
             opaque: "rgba(224,232,243, 0.7)"
           }, 
+
+          D3: [
+            '#636EFA', '#EF553B', '#00CC96', '#AB63FA', 
+            '#FFA15A', '#19D3F3', '#FF6692', '#B6E880', 
+            '#FF97FF', '#FECB52']
+
         },
         headSpacing: {
           marginTop: "30px"

@@ -16,26 +16,11 @@ import gradePerSemester from "/public/ECE2T2_Survey/progression_of_grades.png";
 import firstYearLive from "/public/ECE2T2_Survey/first_year_live.png";
 import gradePerceivedHardness from "/public/ECE2T2_Survey/grades_perceived_hardness.png";
 import timeTakenToFindJob from "/public/ECE2T2_Survey/time_taken_to_find_job.png";
+import linkStyles from "../../../Helpers/createLinkStylesArticle";
 
-const surveyStyles = makeStyles((theme) => ({
-    surveyLinks: {
-        display: "flex",
-        [theme.breakpoints.up("sm")] : {
-            flexDirection: "row",
-            "& *" : {
-                paddingTop: "0px"
-            }
-        },
-        [theme.breakpoints.down("xs")] : {
-            flexDirection: "column",
-            paddingTop: "8px",
-        },
-
-    }
-}))
 export default function Survey2T2({ tags, date }){
     const theme = useTheme()
-    const classes = surveyStyles()
+    const classes = linkStyles()
     return (
         <ContentBackground>
             <ContentWrapper opacity={0.9}>
@@ -45,8 +30,8 @@ export default function Survey2T2({ tags, date }){
                         ECE2T2 Survey
                     </PrettyArticleHeading>
                     <Box className={classes.surveyLinks}>
-                        <SocialsItem Icon={<GitHub/>} title={"GitHub Repo"} link={"https://github.com/hamsburger/ECE2T2_Survey_Results"}/>
-                        <SocialsItem Icon={<Language/>} title={"HTML Report"} link={"https://hamsburger.github.io/ECE2T2_Survey_Results/"}/>
+                        <SocialsItem Icon={<GitHub/>} title={"GitHub Repo"} link={"https://github.com/hamsburger/ECE2T2_Survey_Results/blob/main/ECE_Fourth_Year_Opinions.ipynb"}/>
+                        <SocialsItem Icon={<Language/>} title={"Final HTML Report"} link={"https://hamsburger.github.io/ECE2T2_Survey_Results/"}/>
                     </Box>
                 </Box>
                 <Divider/>
@@ -85,7 +70,7 @@ export default function Survey2T2({ tags, date }){
                 
                 {/****************************************** SOLUTION *****************************************************************************/}
                 <Typography variant="h2" style={{marginTop: "30px"}}>
-                    The Solution
+                    The Solution <a href="https://github.com/hamsburger/ECE2T2_Survey_Results/blob/main/ECE_Fourth_Year_Opinions.ipynb" target="_blank">(Link to Code)</a>
                 </Typography>
                 <Typography variant="body1">
                     <ol>
@@ -101,7 +86,6 @@ export default function Survey2T2({ tags, date }){
                     </ol>
                 </Typography>
                 <br/>
-
                  {/****************************************** 1. Cleaning Survey Data *****************************************************************************/}
                 <Typography variant="h3">1. Cleaning Survey Data</Typography>              
                 <Typography variant="body1">

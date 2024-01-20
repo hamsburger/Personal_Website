@@ -11,10 +11,9 @@ const AppRoutes = {
         "ECE2T2_Survey" : {
         },
         "LinkedIn_Job_Analysis" : {
-            "Powerpoint Presentation" : null,
             "Job Dashboard" : null,
             "Bigram Trigram Dashboard" : null,
-            
+            "Powerpoint Presentation" : null,
         },
         "*" : {
         } 

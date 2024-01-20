@@ -16,6 +16,7 @@ import {
 } from "react-router-dom";
 import { Box } from "@material-ui/core";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
+import RoundButton from "./round_button";
 
 const cardStyles = makeStyles((theme) => ({
     card : {
@@ -51,7 +52,7 @@ const cardStyles = makeStyles((theme) => ({
         // color: "white",
         // background: "rgba(125, 125, 125, 0.9)",
         position: "relative",
-        height: "100px",
+        // height: "100px",
         width: "100%",
         maxWidth: "calc(310px * 1.9833)", // Fit with image
         transition: "all 0.2s ease-in",
@@ -89,11 +90,12 @@ const cardStyles = makeStyles((theme) => ({
     }
 }));
 
-export default ({ imageFilePath, shortDescription, projectRoute }) => {
+export default ({ imageFilePath, shortDescription, projectRoute, tags }) => {
     const classes = cardStyles();
     const navigate = useNavigate();
     const theme = useTheme();
-        return (
+    
+    return (
         <Box className={classes.card} onClick={() => {
                 // console.log(projectRoute)
                 navigate(projectRoute)
@@ -102,8 +104,11 @@ export default ({ imageFilePath, shortDescription, projectRoute }) => {
                     <img src={imageFilePath} className={classes.image}/>
                     <Box className={classes.gradientCaptionBox}>
                         <Typography className={classes.shortDescription}>
-                            {shortDescription}
+                            {shortDescription} <br/>
                         </Typography>
+                        <div style={{ paddingTop: "15px"}}>
+                            {tags.map((tag) => <RoundButton tag={tag}/>)}
+                        </div>
                     </Box>
                 </Box>
                

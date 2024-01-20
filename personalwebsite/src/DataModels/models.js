@@ -28,11 +28,6 @@ export const URLObjDict = {
             "urlsExternal": [
               
             ],
-            "Powerpoint Presentation" : {
-              "urlsExternal": [
-                {"url" : `${DOMAIN_NAME}/linkedin_analysis/ppt_presentations/ppt_job_presentation.pdf`}
-              ]
-            },  
             "Job Dashboard" : {
               "urlsExternal" : [
                 {"url" : `${DOMAIN_NAME}/linkedin_analysis/tableau_dashboards/tableau_job_dashboard.html`}
@@ -43,6 +38,11 @@ export const URLObjDict = {
                 {"url" : `${DOMAIN_NAME}/linkedin_analysis/tableau_dashboards/tableau_gram_dashboard.html`}
               ],
             },
+            "Powerpoint Presentation" : {
+              "urlsExternal": [
+                {"url" : `${DOMAIN_NAME}/linkedin_analysis/ppt_presentations/ppt_job_presentation.pdf`}
+              ]
+            },  
       },        
       "ECE2T2_Survey" : {
         "urlsExternal" : [
@@ -62,7 +62,7 @@ export const propsDict = {
           "imageFilePath": "/ECE2T2_Survey/class_profile_1_title_page.png",
           "shortDescription" : "Data Visualization of Surveys collected from Graduating Electrical and Computer Engineering Students",
           "date": "June 20, 2023",
-          "tags" : ["data_cleaning", "machine-learning", "scikit-learn", "AP-clustering", "data-viz"],
+          "tags" : ["python", "jupyter_notebook", "data_cleaning", "machine-learning", "data-viz"],
           "isHighlight" : true
         }
     },
@@ -72,7 +72,7 @@ export const propsDict = {
           "imageFilePath": "/linkedin_analysis/tableau_title_page.png",
           "shortDescription" : "Tableau Analysis of Data Analyst Job Market in 2022",
           "date": "Nov 1, 2023",
-          "tags" : ["bigquery", "tableau", "python", "spacy"],
+          "tags" : ["python", "SQL", "tableau", "NLP"],
           "isHighlight" : true
         }
     },

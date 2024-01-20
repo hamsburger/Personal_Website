@@ -62,8 +62,8 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     const location = useLocation();
     // const [animation, triggerLoadAnimation] = useState(false);
     const data = useData();
-    console.log("Custom Path:", customPath)
-    console.log("Data:", data)
+    // console.log("Custom Path:", customPath)
+    // console.log("Data:", data)
     const classes = carouselStyles();
     if (Object.keys(data).length === 0) return <></>
     const routesToGenerate = routeAccessor(customPath) 
