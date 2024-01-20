@@ -113,7 +113,7 @@ console.log(theme.breakpoints.up("sm"))
   return (
     <Container>
       <Typography variant="h1" gutterBottom>
-        Blog (Let Me Cook)
+        Blog
       </Typography>
       <Box
         style={{
