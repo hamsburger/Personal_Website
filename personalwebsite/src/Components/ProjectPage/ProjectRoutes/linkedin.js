@@ -11,7 +11,7 @@ import PrettyArticleHeading from "../../Basic/prettyArticleHeading";
 import SocialsItem from "../../Basic/Socials/socialsItem";
 import { GitHub } from "@material-ui/icons";
 import linkStyles from "../../../Helpers/createLinkStylesArticle";
-import { SQLSocials } from "../../Basic/Socials/socialsList";
+import { GitHubSocials, SQLSocials } from "../../Basic/Socials/socialsList";
 
 const listOfElements = [];
 // const TableauJobDashboard = require("./tableau_job_dashboard.html");
@@ -55,7 +55,7 @@ export default function LinkedInJobAnalysis({ tags, date }){
                     </Box>         
                 </Box>
                 <div className={classes.surveyLinks}>
-                    <SocialsItem link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022/blob/main/linkedin-job-data-processing-and-exploration.ipynb"} 
+                    <SocialsItem link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022/tree/main"} 
                                 Icon={<GitHub/>} 
                                 title={"GitHub Link"}/>
                     <SQLSocials link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022/tree/main/bigquery_sql_files"} 
@@ -80,6 +80,13 @@ export default function LinkedInJobAnalysis({ tags, date }){
                     By analyzing a dataset instead of collecting job data case by case, we can unravel trends in the Data Analyst industry.
                     <br/><br/>
                     In the below dashboard, we can inspect those trends. Click on any button to load dashboards/presentations.
+                    <br></br>
+                    We can also perform more sophisticated topic modeling analysis to find out job types based on their job descriptions,
+                    using state-of-the-art BERTopic model. Check out my more advanced analysis here:  
+                    <div>
+                        <GitHubSocials link={"https://github.com/hamsburger/LinkedIn_Job_Data_Analysis_2022/blob/main/linkedin-job-data-job-type-analysis.ipynb"}
+                                       title={"Topic Modeling Job Descriptions using BERTopic"}/>
+                    </div>
                 </Typography>
                 <ProjectCarousel customPath="/projects/LinkedIn_Job_Analysis"/>
             </ContentWrapper>

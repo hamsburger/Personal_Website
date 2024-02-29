@@ -71,7 +71,12 @@ export function WorkSocials(){
     <SocialsItem title={"LinkedIn"} Icon={<LinkedIn/>} link="https://www.linkedin.com/in/harriszheng/"/>
     <SocialsItem title={"GitHub"} Icon={<GitHub/>} link="https://github.com/hamsburger"/>
   </>
+}
 
+export function GitHubSocials({link, title}){
+  return <>
+    <SocialsItem title={title} Icon={<GitHub/>} link={link}/>
+  </>
 }
 
 export function JupyterSocials({link, title="Jupyter Notebook"}){
