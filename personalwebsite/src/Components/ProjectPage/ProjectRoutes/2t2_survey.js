@@ -17,6 +17,7 @@ import firstYearLive from "/public/ECE2T2_Survey/first_year_live.png";
 import gradePerceivedHardness from "/public/ECE2T2_Survey/grades_perceived_hardness.png";
 import timeTakenToFindJob from "/public/ECE2T2_Survey/time_taken_to_find_job.png";
 import linkStyles from "../../../Helpers/createLinkStylesArticle";
+import ReactEmbedGist from "react-embed-gist";
 
 export default function Survey2T2({ tags, date }){
     const theme = useTheme()
@@ -26,24 +27,26 @@ export default function Survey2T2({ tags, date }){
             <ContentWrapper opacity={0.9}>
                 {/* Title and Icon Header */}
                 <Box style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap"}}>
-                    <PrettyArticleHeading>
-                        ECE2T2 Survey
+                    <PrettyArticleHeading style={{fontWeight: 600}}>
+                        UofT ECE2T2 Student Life Survey
                     </PrettyArticleHeading>
                     <Box className={classes.surveyLinks}>
-                        <SocialsItem Icon={<GitHub/>} title={"GitHub Repo"} link={"https://github.com/hamsburger/ECE2T2_Survey_Results/blob/main/ECE_Fourth_Year_Opinions.ipynb"}/>
-                        <SocialsItem Icon={<Language/>} title={"Final HTML Report"} link={"https://hamsburger.github.io/ECE2T2_Survey_Results/"}/>
+                        <SocialsItem Icon={<GitHub/>} title={"GitHub Repo"} link={"https://github.com/hamsburger/ECE2T2_Survey_Data_Report/blob/53108d3d529c4f883e46898c261cbdd8e200add4/ECE_Fourth_Year_Opinions.ipynb"}/>
+                        <SocialsItem Icon={<Language/>} title={"Final HTML Report"} link={"https://hamsburger.github.io/ECE2T2_Survey_Data_Report/"}/>
                     </Box>
                 </Box>
                 <Divider/>
 
                 {/* Date + Tags */}
                 <Box style={{display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: "10px 0px"}}>
-                    <PrettyArticleHeading style={{fontSize: "1.2rem"}}>{date}</PrettyArticleHeading>  
-                    <Box>
+                    <PrettyArticleHeading variant="h1" style={{fontSize: "1.2rem"}}>{date}</PrettyArticleHeading>  
+                    <Box>   
                         <PrettyArticleHeading style={{fontSize: "20px"}} display="inline">
                             Tags:
                         </PrettyArticleHeading>
-                        <Typography variant="body1" display="inline" style={{marginLeft: "5px"}}>{tags.join(", ")}</Typography>
+                        <Typography variant="body1" display="inline" component={"div"} style={{marginLeft: "5px", position: "relative", top: "-1px"}}>
+                            {tags.join(", ")}
+                        </Typography>
                     </Box>         
                 </Box>
 
@@ -54,8 +57,9 @@ export default function Survey2T2({ tags, date }){
                 <Typography variant="body1">
                     One of my closer friends surveyed 54 UofT Electrical and Engineering students graduating in 2023 (ECE2T2s),
                     and asked me to make a data report that would provide <b>descriptive analytics</b> of their life  
-                    such as their contentedness, lifestyle choices,  
-                    after-grad circumstances etc.. 
+                    such as contentedness, lifestyle choices, after-grad circumstances etc.. The goal of the project is to host the data report on a website 
+                    by June 20th, 2023, the day of graduation ceremony for ECE2T2s, so that graduating students would be able 
+                    to look back on their University life as well as future endeavours.
                 </Typography>
                 <div><img src={titleImage} style={{width: "100%", maxWidth: "800px"}}/></div>
                 <ImageCaption>ECE2T2 Survey Title Page</ImageCaption>
@@ -64,21 +68,32 @@ export default function Survey2T2({ tags, date }){
                 For privacy reasons, I am not allowed to share survey data, but it was stored in a csv and was formatted something like this:
                 </Typography>
                 <Table id="2T2_data_format_table" columns={["Submission ID", "Respondent ID", "Submitted At", "Survey Question 1", "Survey Question 2"]}
-                    rows={[[<i>Some Submission #</i>], [<i>Some Uniquely Generated ID</i>], [<i>Some Date</i>], [<i>Respondent Answer 1</i>], [<i>Respondent Answer 2</i>]]}/>
-                <ImageCaption>Each row represents survey responses from each respondent.</ImageCaption>{" "}
-                <ImageCaption>Questions are located on columns and each answer from each respondent exists under those columns.</ImageCaption>
+                    rows={[[<i>Some Survey Submission #</i>], [<i>Some Uniquely Generated ID</i>], [<i>Some Date</i>], [<i>Respondent Answer 1</i>], [<i>Respondent Answer 2</i>]]}/>
+                <ImageCaption>Each row represents a survey response submitted by a respondent.</ImageCaption>{" "}
+                <ImageCaption>A survey response contains some identifiers, the date on which the response was submitted, and answers to certain survey questions.
+                </ImageCaption>
                 
                 {/****************************************** SOLUTION *****************************************************************************/}
                 <Typography variant="h2" style={{marginTop: "30px"}}>
                     The Solution <a href="https://github.com/hamsburger/ECE2T2_Survey_Results/blob/main/ECE_Fourth_Year_Opinions.ipynb" target="_blank">(Link to Code)</a>
                 </Typography>
                 <Typography variant="body1">
+                    In theory, all I need to do is to plot the distribution of respondent answers to survey questions.
+                </Typography>
+                <Typography variant="body1">
+                    But in practice, there is a bit of research involved, and a <b>LOT</b> of visualizations (About 124...) I need to figure out. As the sole developer
+                    in this project, I need to plan accordingly and accomplish the following tasks to complete the UofT Student Life Survey:
+                </Typography>
+                <Typography variant="body1">
                     <ol>
                         <Typography variant="body1" style={{marginBottom: "5px"}}>
-                            <li>Clean Survey Data in Jupyter Notebook</li>
+                            <li>Clean Survey Data in Prepation for Analysis</li>
                         </Typography>
                         <Typography variant="body1" style={{marginBottom: "5px"}}>
-                            <li>Extract Insight and Make Plotly Visualizations in Jupyter Notebook</li>
+                            <li>Observe Interesting Relationships in Data</li>
+                        </Typography>
+                        <Typography variant="body1" style={{marginBottom: "5px"}}>
+                            <li>Make (and Automate!) Plotly Visualizations in Jupyter Notebook</li>
                         </Typography>
                         <Typography variant="body1" style={{marginBottom: "5px"}}>
                             <li>Convert Jupyter Notebook to HTML Report</li>
@@ -87,35 +102,40 @@ export default function Survey2T2({ tags, date }){
                 </Typography>
                 <br/>
                  {/****************************************** 1. Cleaning Survey Data *****************************************************************************/}
-                <Typography variant="h3">1. Cleaning Survey Data</Typography>              
+                <Typography variant="h3">1. Clean Survey Data in Preparation for Analysis</Typography>              
                 <Typography variant="body1">
-                        Most multiple choice survey responses are pretty straightforward to clean.
+                        Most multiple choice survey responses are straightforward to clean.
                         For example, for the survey question "How often do you go out?", respondents
                         are only given 1 out of 5 responses to select from. Since the responses are all in text
                         and require no further postprocessing, we can plot the distribution right away.
                 </Typography>
                 <img src={goOutPerWeek} style={{width: "100%", maxWidth: "600px"}}></img><br/>
-                <ImageCaption>Responses to "How often do you go out?"</ImageCaption>
+                <ImageCaption>Responses to "How often do you go out?", "count" denoting number of students who recorded a specific response</ImageCaption>
                 <br/><br/>
-                There are also some survey responses which are trickier to clean in Pandas. For example,
-                some overall GPAs are way too low (Below 0.5), while salary information is present in
-                different currencies and must be normalized to one currency.
-                <br/><br/>
-                However, the <b>trickiest data</b> to clean involve survey responses which have no format requirement and 
-                are entered by respondent into a text field.
-                <br/><br/>
+                Other types of responses that need to be cleaned include GPA too low (Below 0.5), salary information recorded in
+                different currency, which can be dealt with by respectively filtering data and doing some currency conversions in Python. 
+                However, free text responses cannot be cleaned as easily. These survey responses have no format requirement and can input any arbitrary response.
                 For example, for survey responses to "Who is your Favourite Prof?", respondents were not
-                asked to choose from options, but rather type out their favourite prof in a text field. 
+                asked to choose an answer from multiple choice, but rather type out their favourite professor name into a text field. 
                 <br/><br/>
-                You already know text field input causes a lot of chaos in responses... For example, check out people e
-                ntering one of ECE's professors' names "Tarek Abdelrahman" in all different shapes and forms:<br/><br/>
+                And... You can already guess what the <b>problem with free text fields</b> are. Respondents may refer to a single idea in multiple ways, 
+                or they may simply make a typo and append to the already <i>everlasting, neverending</i> list of ways to refer to a single idea. 
+                <br/><br/>
+                As an example, check out 
+                student respondents entering one of the UofT ECE professor names "Tarek Abdelrahman" in all different shapes and forms:<br/><br/>
+                
                 <img src={tarekClusters} style={{width: "100%", maxWidth: "700px"}}></img><br/>
                 <ImageCaption>Various text fied inputs of Tarek highlighted in yellow</ImageCaption>
                 <br/><br/>
-                Fortunately, we can use scipy's AP (Affinity Propogation) Clustering <b>machine learning algorithm</b> to 
-                group all of these Tarek typos and other typos into one group, then proceed to replace those clusters with 
-                the correct ground truth. <br/><br/>To ensure
-                the maximum accuracy of these clusters, they are grouped based on string distance metric 
+                Fortunately, we can use sklearn's AP (Affinity Propogation) Clustering <b>unsupervised learning algorithm</b> to 
+                group all similar ideas into one group, such as Tarek's different alias, then proceed to replace those clusters with 
+                a ground truth value. In order to get the clustering to work, however,
+                I first needed to select an adequate string distance metric to ensure my clusters converged.
+                <br/><br/>
+                Initially, I leaned towards Levenshtein Distance as the adequate string distance metric. However, I quickly realized that
+                it wasn't perfect for my use case.
+                <br></br>
+                string distance metric 
                 Longest Common Subsequence, and professor names that require no replacement with ground truth values 
                 are also filtered out statistically.
                 <br/><br/>

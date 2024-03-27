@@ -16,6 +16,7 @@
     "clsx": "^2.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-embed-gist": "^1.0.20",
     "react-lazyload": "^3.0.0",
     "react-router-dom": "^6.0.0",
     "react-scripts": "^5.0.1",

@@ -19,13 +19,11 @@ export function CustomThemeProvider({ children }) {
             fontWeight: "500",
             letterSpacing: "7px", 
             fontFamily: "Raleway, sans-serif",
-
-            
           },
           h2: {
             ...defaultTheme.typography.h2,
             fontSize: "1.5rem",
-            fontWeight: "400",
+            fontWeight: "500",
             letterSpacing: "3px",
             fontFamily: "Raleway, sans-serif",
           },
