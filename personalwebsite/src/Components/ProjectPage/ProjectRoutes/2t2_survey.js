@@ -178,9 +178,14 @@ export default function Survey2T2({ tags, date }){
                 </Typography>
 
                 <Typography>
-                To account for situations where clusters are not perfect, I prompt the user to enter Y/N so they can decide
+                To account for situations where clusters are not perfect, I prompt the programmer to enter Y/N so they can decide
                 whether to use group the cluster into one idea or not based on if they think the cluster is representative
-                enough of one idea.
+                enough of one idea. If the programmer thinks the cluster contains only one idea, they can choose the ground
+                truth value to replace all clustered values with (ex. replace "apples" and "gala apples" with "apple"). If 
+                the programmer thinks the cluster contains too many ideas, the programmer can choose to do nothing to those
+                cluster of values for now and manually clean those values later. It might sound like a loss that some clusters cannot be 
+                automated and replaced with one ground truth value as we desire, but do not underestimate the value of such
+                "useless" clusters because they can still inspire ideas for manual data cleaning.
                 </Typography>
 
                 <div style={{marginBottom: 0}}><img src={text_clustering_cleaning_prof}/></div>
