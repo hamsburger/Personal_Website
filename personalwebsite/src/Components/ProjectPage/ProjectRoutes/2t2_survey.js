@@ -10,12 +10,16 @@ import { GitHub, Language } from "@material-ui/icons";
 import titleImage from "/public/ECE2T2_Survey/class_profile_1_title_page.png";
 import goOutPerWeek from "/public/ECE2T2_Survey/class_profile_bar_chart.png";
 import tarekClusters from "/public/ECE2T2_Survey/tarek_clusters.png";
-import textClustering from "/public/ECE2T2_Survey/text_clustering_cleaning.gif";
 import favTeachers from "/public/ECE2T2_Survey/favourite_teachers.png";
 import gradePerSemester from "/public/ECE2T2_Survey/progression_of_grades.png";
 import firstYearLive from "/public/ECE2T2_Survey/first_year_live.png";
 import gradePerceivedHardness from "/public/ECE2T2_Survey/grades_perceived_hardness.png";
 import timeTakenToFindJob from "/public/ECE2T2_Survey/time_taken_to_find_job.png";
+import prof_mismatch_lcs from "/public/ECE2T2_Survey/professor_mismatch_lcs_2.png";
+import hobby_mismatch_lcs from "/public/ECE2T2_Survey/hobby_mismatch_lcs.png";
+import hobby_mismatch_levenshtein from "/public/ECE2T2_Survey/hobby_mismatch_levenshtein.png";
+import text_clustering_cleaning_prof from "/public/ECE2T2_Survey/text_clustering_cleaning_prof.gif";
+import text_clustering_cleaning_hobbies from "/public/ECE2T2_Survey/text_clustering_cleaning_hobbies.gif";
 import linkStyles from "../../../Helpers/createLinkStylesArticle";
 import ReactEmbedGist from "react-embed-gist";
 
@@ -118,43 +122,73 @@ export default function Survey2T2({ tags, date }){
                 For example, for survey responses to "Who is your Favourite Prof?", respondents were not
                 asked to choose an answer from multiple choice, but rather type out their favourite professor name into a text field. 
                 <br/><br/>
-                And... You can already guess what the <b>problem with free text fields</b> are. Respondents may refer to a single idea in multiple ways, 
-                or they may simply make a typo and append to the already <i>everlasting, neverending</i> list of ways to refer to a single idea. 
+                And... You may already be able to guess what the <b>problem with free text fields</b> are. Respondents can use multiple ways to refer to a single idea, 
+                whether intentionally, or non-intentionally by making a typo.
                 <br/><br/>
                 As an example, check out 
                 student respondents entering one of the UofT ECE professor names "Tarek Abdelrahman" in all different shapes and forms:<br/><br/>
-                
                 <img src={tarekClusters} style={{width: "100%", maxWidth: "700px"}}></img><br/>
                 <ImageCaption>Various text fied inputs of Tarek highlighted in yellow</ImageCaption>
                 <br/><br/>
                 Fortunately, we can use sklearn's AP (Affinity Propogation) Clustering <b>unsupervised learning algorithm</b> to 
                 group all similar ideas into one group, such as Tarek's different alias, then proceed to replace those clusters with 
-                a ground truth value. In order to get the clustering to work, however,
-                I first needed to select an adequate string distance metric to ensure my clusters converged.
+                one ground truth value. This is our goal, to group similar ideas into one ground truth. In order to get the clustering to work, however,
+                I first needed to select an adequate string distance metric to ensure my clusters converge.
                 <br/><br/>
-                Initially, I leaned towards Levenshtein Distance as the adequate string distance metric. However, I quickly realized that
-                it wasn't perfect for my use case.
-                <br></br>
-                string distance metric 
-                Longest Common Subsequence, and professor names that require no replacement with ground truth values 
-                are also filtered out statistically.
+                <Typography>
+                Initially, I leaned towards <b>Longest Common Subsequence (LCS)</b> as the adequate string distance metric. This distance
+                metric finds the longest non-contiguous match between two strings. For example, "ape" and "app" have an LCS of 2, 
+                while "boy" and "buoy" have an LCS of 3 even though "boy" in buoy is not contiguous. I thought that if survey responders
+                entered their answers in free-text form, the extra letters they accidentally type or the letters they accidentally 
+                remove will create strings that match non-contiguously with their intended answers. However, I quickly realized
+                that the strings also non-contiguously match with other answers with different ideas. Here are some examples of 
+                these false positive clusters I discovered:  
+                </Typography>
+                <div style={{marginBottom: 0}}><img src={prof_mismatch_lcs}/></div>
+                <ImageCaption>Would not think Bruno Korst and Rose are the same person...</ImageCaption><br/><br/>
+                <div style={{marginBottom: 0}}><img src={hobby_mismatch_lcs}/></div>
+                <ImageCaption>When using LCS to cluster hobby groups... We are unable to differentiate between different hobbies...</ImageCaption>
                 <br/><br/>
-                <img src={textClustering} style={{maxWidth: "800px", width: "100%"}}/>
-                <br/>
+                <Typography>
+                Clearly I needed a different distance-metric. In the end, I decided to use <b>Levenshtein distance</b>. 
+                I believe Levenshtein distance is better for cleaning text for my use case because
+                it dealt a harsher penalty for matching substrings with long non-contiguous sequences in between matching strings,
+                which unlike LCS does not deal any penalty.  
+
+                Let's see newly derived prof and hobby clusters with Levenshtein
+                </Typography>
+                <div style={{marginBottom:0}}><img src={text_clustering_cleaning_prof}  style={{width: "100%", maxWidth: "700px"}}/></div>
+                <div><img src={text_clustering_cleaning_hobbies}  style={{width: "100%", maxWidth: "700px"}}/></div>
+                <Typography>
+                Even though we don't have an evaluation metric for the metrics, we can see 
+                that the clusters are now much more well-defined, and now it's easier to group these texts under
+                one ground truth to show more accurate distributions.
+                </Typography>
+                <Typography>
+                However, we know sometimes, the clusters are not perfect
+                </Typography> 
+                <div><img src={hobby_mismatch_levenshtein}/></div>
+                <ImageCaption>This cluster in hobbies has two different ideas: Running and dancing</ImageCaption>
+                <br/><br/>
+                <Typography>
+                There are measures we can take to ensure these two ideas are separated, such as increasing the 
+                weight of replacement for levenshtein, but it will be hard to tune clustering algorithms without
+                overfitting. Tuning the algorithm to fix one cluster has too high of a risk to ruin clustering for
+                other scenarios.
+                </Typography>
+
+                <Typography>
+                To account for situations where clusters are not perfect, I prompt the user to enter Y/N so they can decide
+                whether to use group the cluster into one idea or not based on if they think the cluster is representative
+                enough of one idea.
+                </Typography>
+
+                <div style={{marginBottom: 0}}><img src={text_clustering_cleaning_prof}/></div>
                 <ImageCaption>Here is a gif of the clustering in action!</ImageCaption><br/><br/>
-                The methods I implemented for AP Clustering is reasonably accurate and can replace most typos.
-                However, it is definitely not perfect and does miss some typos (true negatives) and misidentifies some
-                non-typos as typos (false positives).
-                <br/><br/> 
-                To make up for this error, I make it an option in the code to
-                inspect clusters of typos before they are fixed (as seen in the above gif) and allow myself to
-                choose Y/N to indicate whether to fix that cluster or not. I also manually fix any typos that
-                cannot be fixed by the AP Clustering tool, but the work is minimal thanks to the AP Clustering Algorithm's{" "}
-                <b>AI capabilities</b> in automatically identifying and fixing typos.
-                <br/><br/> 
-                <img src={favTeachers} style={{width: "100%", maxWidth: "800px"}}></img><br/>
-                <ImageCaption>Thanks to our trusty machine learning algorithm, we can plot a very clean distribution of
-                ECE2T2 students' favourite profs!</ImageCaption>
+                
+                The user prompts are stored in a JSON file, which can be executed later in our program to group
+                similar ideas into one and automate data cleaning! Thanks to our trusty unsuperivsed machine learning algorithm, 
+                we can plot a very clean distribution of ECE2T2 students' favourite profs!
 
                 {/******************************************************** 2. Extract Insights ***********************************************************/}
                 <Typography variant="h2" style={{marginTop: "30px"}}>2. Extract Insight and Make Plotly Visualizations</Typography>
