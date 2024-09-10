@@ -6,7 +6,7 @@ import ContentWrapper from "../Basic/contentWrapper";
 import { MusicSocials } from "../Basic/Socials/socialsList";
 
 export default () => (
-        <ContentBackground backgroundColor={"purple"}>
+        <ContentBackground backgroundColor="rgba(227, 61, 148, 0.3)">
             <ContentWrapper>
                 <PrettyArticleHeading>
                     Music

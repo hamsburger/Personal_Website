@@ -12,7 +12,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   width: 100%;
   max-width: "100vw";
-  background: rgba(190,215,245, 0.8);
+  background: rgba(137, 196, 244, 0.3);
   /* height: 110vw; */
   overflow-x: hidden;
 }

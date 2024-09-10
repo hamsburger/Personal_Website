@@ -192,7 +192,7 @@ const Main = () => {
 
   useEffect(() => {
     /** Not a good idea to stop propogation for event listeners on window.
-     * Can potentially affect the functionality of many third party.
+     * Can potentially affect the functionality of many third party libraries.
      */
     window.addEventListener('resize', (e) => {
       e.stopImmediatePropagation();

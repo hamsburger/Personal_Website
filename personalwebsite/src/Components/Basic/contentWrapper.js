@@ -23,7 +23,8 @@ const wrapperStyles = makeStyles((theme) => ({
         
         "& > *": {  
             marginBottom: props => props.childrenMarginBottom || "15px",
-        }
+        },
+        boxSizing: "border-box"
     },
 }))
 

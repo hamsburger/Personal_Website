@@ -23,7 +23,7 @@ const BlogResults = ({ results }) => {
     <div>
       <h2>Search Results</h2>
       {results.length === 0 ? (
-        <p>No results found.</p>
+        <p>Blog Page Coming Soon!</p>
       ) : (
         <List>
           {results.map((result, index) => {

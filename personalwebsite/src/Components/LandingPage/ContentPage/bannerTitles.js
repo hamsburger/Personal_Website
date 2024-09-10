@@ -4,11 +4,11 @@ export default [
     title: "Projects",
     seconds: 0.25,
   },
-  {
-    id: 2,
-    title: "Interests",
-    seconds: 0.75,
-  },
+  // {
+  //   id: 2,
+  //   title: "Interests",
+  //   seconds: 0.75,
+  // },
   // {
   //   id: 3,
   //   title: "ContactInfo",

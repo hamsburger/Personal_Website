@@ -5,9 +5,13 @@ import Divider from "@material-ui/core/Divider";
 import Button from "@material-ui/core/Button";
 import Box from "@material-ui/core/Box";
 import Books from "./images/books.png";
+import Profile from "./images/profile.jpeg";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import useMobile from "../../../Hooks/useMobile";
+import SocialsItem from "../../Basic/Socials/socialsItem";
+import { Send as SendIcon, LinkedIn, GitHub, YouTube, MusicNote, ExpandLess, ExpandMore, Mail,
+    Storage as Storage, LibraryBooks as JupyterNotebook } from "@material-ui/icons";
 const PERIOD = 2;
 
 const TheAnimations = () => {
@@ -50,7 +54,7 @@ const TheAnimations = () => {
 
 const introStyles = makeStyles((theme) => ({
     intro : {
-        position: 'relative', 
+        position: 'relative',
         alignItems: "center",
         overflowX: "hidden",
         minHeight: "40vh",
@@ -73,9 +77,22 @@ const introStyles = makeStyles((theme) => ({
         marginLeft: "-5px",
         cursor: "default"
     },
+    imageContainer : {
+        position: "relative",
+        float: "left",
+        [theme.breakpoints.up("md")]:{
+            float: "left",
+            marginRight: "25px"
+        },
+        [theme.breakpoints.down("sm")]:{
+            padding: 0,
+            marginBottom: "5px"
+        },
+    },
     introTextBox : {
-        maxWidth: "800px",
+        maxWidth: "900px",
         width: "80%",
+        marginLeft: "20px",
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
@@ -103,9 +120,13 @@ const introStyles = makeStyles((theme) => ({
             marginTop: "30px"
         }
     },
-    introText: {
-
-    }
+    headerBox: {
+        display: "inline-flex", 
+        gap: "10px",
+        "& > *" : {
+            cursor: "pointer"
+        }
+    },
 }));
 export default function Intro() {
     const classes = introStyles();
@@ -117,12 +138,35 @@ export default function Intro() {
         <div id="intro" className={classes.intro}>
             {(!isMobile) && <TheAnimations/>}
             <div className={classes.introTextBox}>
-                <Typography variant="h1">
-                    Harris Zheng
-                </Typography>
+                <div className={classes.headerBox}>
+                    <Typography variant="h1">
+                        Harris (Hai Ran) Zheng
+                    </Typography>
+                    <span onClick={() => window.open("https://www.linkedin.com/in/harriszheng/", "_blank")}>
+                        <LinkedIn style={{ color: "white", ...theme.typography.h1, fontSize: "2.25rem"}}/>
+                    </span>
+                    <span onClick={() => window.open("https://github.com/hamsburger", "_blank")}>
+                        <GitHub style={{ color: "white", ...theme.typography.h1, fontSize: "2.25rem"}}/>
+                    </span>
+                </div>
+                <div className={classes.imageContainer}>
+                    <img src={Profile} style={{maxHeight: "200px", float: "left", paddingRight: "80px"}}/>
+                    {/* <Typography variant="body1">
+                    <b>Key Skills:</b> Python, End-To-End Pipelines
+                    </Typography> */}
+                </div>
                 <Divider style={{background: "white", marginBottom: "20px", height: "2px"}}/>
+                <Typography variant="h2">
+                    Education
+                </Typography>
                 <Typography variant="body1" style={{color: "rgba(255, 255, 255, 0.85)"}}>
-                    UofT Bachelors in Computer Engineering 2023 <br/><br/>
+                    University of Michigan Data Science (2023 - Present (Expected 2025)) <br/>
+                    University of Toronto Bachelors in Computer Engineering 2018-2023
+                </Typography>
+                <Typography variant="h2">
+                    Experience
+                </Typography>
+                <Typography variant="body1" style={{color: "rgba(255, 255, 255, 0.85)"}}>
                     2 years of Experience as Embedded Data Analyst at GeoTab
                 </Typography>
                 <Button variant="contained" href="#Projects">

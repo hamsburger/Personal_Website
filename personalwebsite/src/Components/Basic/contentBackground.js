@@ -37,7 +37,7 @@ const backgroundStyles = makeStyles((theme) => ({
     }  
 }));
 
-export default function ContentBackground({ fill, backgroundColor, opacity = 1, children }){
+export default function ContentBackground({ fill = "true", backgroundColor = "white", opacity = 1, children }){
     const location = useLocation();
     let minHeight;
     if (location.pathname !== "/") minHeight = "100vh"
