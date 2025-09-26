@@ -48,9 +48,9 @@ const BlogMarkdown = ({ content }) => {
           return res.text()
         })
         .then(text => {
-          console.log(text) 
           text = text.slice(16, -2) // Remove export default
-          text = text.replace(/\\r\\n/g, "\n") // Replace \r\n with two spaces and \n
+          text = text.replace(/\\r\\n|\\n\\n/g, " \n") // Replace \r\n with two spaces and \n
+          console.log(text)
           setRenderedMD(text)
         })
     },
