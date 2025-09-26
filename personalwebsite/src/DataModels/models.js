@@ -82,7 +82,7 @@ export const propsDict = {
       "Benefits of Good Design" : {
         "props" : {
           "title" : "Importance of Good Design",
-          "tags" : ["software", "music"],
+          "tags" : ["software", "IDE"],
           "date" : "2025-09-25",
           "page" : <BlogMarkdown content={ImportanceOfDesignPage}/>
         }

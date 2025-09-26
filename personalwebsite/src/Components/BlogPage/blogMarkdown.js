@@ -5,6 +5,7 @@ import remarkDirectiveRehype from 'remark-directive-rehype'
 import remarkGfm from 'remark-gfm';
 import remarkDirective from 'remark-directive';
 import remarkMath from 'remark-math';
+import remarkBreaks from 'remark-breaks';
 import rehypeKatex from 'rehype-katex';
 import ContentWrapper from '../Basic/contentWrapper';
 import {solarizedDarkAtom} from 'react-syntax-highlighter/dist/esm/styles/prism'
@@ -47,15 +48,14 @@ const BlogMarkdown = ({ content }) => {
           return res.text()
         })
         .then(text => {
-          console.log() 
+          console.log(text) 
           text = text.slice(16, -2) // Remove export default
-          text = text.replace(/\\r\\n/g, "  \n") // Replace \r\n with two spaces and \n
+          text = text.replace(/\\r\\n/g, "\n") // Replace \r\n with two spaces and \n
           setRenderedMD(text)
         })
     },
     []
   )
-  // console.log(MafsPage)
   return (
     <ContentWrapper>
     <Markdown
@@ -143,7 +143,7 @@ const BlogMarkdown = ({ content }) => {
               </blockquote>
             ),
         }}
-        remarkPlugins={[remarkGfm, remarkMath, remarkDirective, remarkDirectiveRehype]}
+        remarkPlugins={[remarkGfm, remarkMath, remarkDirective, remarkDirectiveRehype, remarkBreaks]}
         rehypePlugins={[rehypeKatex]}
     >
         {`${renderedMD}`}
