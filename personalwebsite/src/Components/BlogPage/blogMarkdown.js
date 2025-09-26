@@ -143,7 +143,7 @@ const BlogMarkdown = ({ content }) => {
               </blockquote>
             ),
         }}
-        remarkPlugins={[remarkGfm, remarkMath, remarkDirective, remarkDirectiveRehype, remarkBreaks]}
+        remarkPlugins={[remarkGfm, remarkMath, remarkDirective, remarkDirectiveRehype]}
         rehypePlugins={[rehypeKatex]}
     >
         {`${renderedMD}`}
