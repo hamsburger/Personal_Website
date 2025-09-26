@@ -8,7 +8,7 @@ import {
     useNavigate,
     useLocation
 } from "react-router-dom";
-import Projects from "../allRoutes";
+import Projects from "../../DataModels/allRoutes";
 import ProjectLandingPage from "./ProjectRoutes/landingPage";
 import { UIObjects } from "../../DataModels/models";
 import RouteGenerator from "../Basic/RouteGenerator";

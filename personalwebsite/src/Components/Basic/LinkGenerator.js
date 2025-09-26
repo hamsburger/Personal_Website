@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import AppRoutes from "../allRoutes";
+import AppRoutes from "../../DataModels/allRoutes";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core";
@@ -23,9 +23,19 @@ const linkStyles = makeStyles((theme)=>({
   }));
   
 export default function LinkGenerator({ customPath, customStyles, isDynamic = false}){
-    /** This Component will generate links based on where it is in the App.
-     *  You can also define a customPath to fix the links being generated.
-      */  
+  /**
+   * LinkGenerator Component
+   * 
+   * This component generates links based on the current location in the app.
+   * It can also accept a custom path to generate links for a specific section.
+   * 
+   * @param {string} customPath - The custom path to generate links for using /DataModels/allRoutes
+   * @param {object} customStyles - Custom styles to apply to the link buttons.
+   * @param {boolean} isDynamic - Whether the links are dynamic or not.
+   * 
+   * @returns {JSX.Element} A list of links generated based on the provided parameters.
+   */
+      
     const classes = linkStyles();
     const routesToGenerate = routeAccessor(customPath)
     return (
@@ -36,7 +46,7 @@ export default function LinkGenerator({ customPath, customStyles, isDynamic = fa
                   {
                     (!customStyles) && <Button className={classes.button}>
                       { key[0].toUpperCase() + key.slice(1)}
-                    </Button> || <Button {...customStyles}>
+                    </Button> || <Button style={{...customStyles}}>
                     { key[0].toUpperCase() + key.slice(1)}
                     </Button>
                   }

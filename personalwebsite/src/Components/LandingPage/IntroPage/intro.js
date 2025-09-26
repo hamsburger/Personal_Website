@@ -108,7 +108,6 @@ const introStyles = makeStyles((theme) => ({
         paddingTop: "20px",
         marginTop: 0,
         "& > *" : {
-            flex: "0 0 auto",
             marginBottom: "20px",
             fontWeight: 400,
         },
@@ -157,17 +156,28 @@ export default function Intro() {
                 </div>
                 <Divider style={{background: "white", marginBottom: "20px", height: "2px"}}/>
                 <Typography variant="h2">
+                    Experience
+                </Typography>
+                <Typography style={{display: "flex", flexDirection: "row", justifyContent : "space-between", marginBottom: 0}}>
+                    <Typography>Data Engineer at Sayari</Typography>
+                    <Typography>Sept 2025 - Now</Typography>
+                </Typography>
+                <Typography style={{fontStyle: "italic"}}>
+                    • Automating entity resolution based on corporate attributes (ex. names and identifiers) and improving overall SDLC processes in GCP Cloud using Spark, Scala, Airflow. 
+                </Typography>
+                <Typography style={{display: "flex", flexDirection: "row", justifyContent : "space-between", marginBottom: 0}}>
+                    <Typography>Embedded Data Analyst at Geotab</Typography>
+                    <Typography>Apr 2021 - Sept 2022</Typography>
+                </Typography>
+                <Typography variant="body1" style={{fontStyle : "italic", color: "rgba(255, 255, 255, 0.85)"}}>
+                    • Analyzing vehicle sensor problems and reducing cost in GCP Bigquery.
+                </Typography>
+                <Typography variant="h2">
                     Education
                 </Typography>
                 <Typography variant="body1" style={{color: "rgba(255, 255, 255, 0.85)"}}>
                     University of Michigan Data Science (2023 - Present (Expected 2025)) <br/>
                     University of Toronto Bachelors in Computer Engineering 2018-2023
-                </Typography>
-                <Typography variant="h2">
-                    Experience
-                </Typography>
-                <Typography variant="body1" style={{color: "rgba(255, 255, 255, 0.85)"}}>
-                    2 years of Experience as Embedded Data Analyst at GeoTab
                 </Typography>
                 <Button variant="contained" href="#Projects">
                     Go to My Profile

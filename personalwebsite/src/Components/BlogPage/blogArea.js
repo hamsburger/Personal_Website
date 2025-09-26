@@ -43,18 +43,12 @@ const blogStyles = makeStyles((theme) => ({
   }
 }))
 const BlogArea = () => {
-  // const data = [
-  //   { title: "Item 1", tags: ["tag1", "tag2"] },
-  //   { title: "Item 2", tags: ["tag2", "tag3"] }
-  //   // Add more data as needed
-// ];
   let desiredPath = "/blog"
   let pages = (dictAccessor(desiredPath, propsDict))
   let allPages = (
-    []
-    // Object.entries(pages).filter(elem => new Date(elem[1]["props"]["date"]).getTime() < Date.now()) 
+    Object.entries(pages).filter(elem => new Date(elem[1]["props"]["date"]).getTime() < Date.now()) 
   ) // Release pages have dates authored before now
-  // console.log(allPages)
+
   let allResults = allPages.map(elem => ({
                                     ...elem[1]["props"],
                                     navLink : elem[0]
@@ -62,7 +56,7 @@ const BlogArea = () => {
   let routeDict = {}
   allPages.forEach(elem => {
     routeDict[elem[0]] = elem[1]["props"]["page"]  
-  })
+  }) 
   // console.log("All Pages", allPages)
   // console.log("All Results", allResults)
   // console.log("Route Dict", routeDict)
@@ -80,9 +74,10 @@ const BlogArea = () => {
   }
 
   const handleSearch = (searchQuery, filterTag) => {
-    console.log("searchQuery", searchQuery)
-    console.log("filterTag", filterTag)
-    // Filter allResults based on search query and filter tag
+    // console.log("searchQuery", searchQuery)
+    // console.log("filterTag", filterTag)
+
+    /* Filter allResults based on search query and filter tag */
     const filteredResults = allResults.filter(
       (item) =>
         item.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
@@ -135,7 +130,6 @@ console.log(theme.breakpoints.up("sm"))
         }}
         style={{flexGrow: 7}}
       />
-        
         
         <Button
           className={classes.flexButtonAdjustments}

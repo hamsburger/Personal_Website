@@ -66,7 +66,6 @@ export default function ProjectCarousel({ customPath, galleryMode = true }){
     // console.log("Data:", data)
     const classes = carouselStyles();
     if (Object.keys(data).length === 0) return <></>
-    const routesToGenerate = routeAccessor(customPath) 
     let dataObjs = dictAccessor(customPath, data)
         if (dataObjs.hasOwnProperty("urlsExternal")){
             delete dataObjs["urlsExternal"]

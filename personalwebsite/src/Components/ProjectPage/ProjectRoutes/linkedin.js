@@ -88,7 +88,7 @@ export default function LinkedInJobAnalysis({ tags, date }){
                                        title={"Topic Modeling Job Descriptions using BERTopic"}/>
                     </div>
                 </Typography>
-                <ProjectCarousel customPath="/projects/LinkedIn_Job_Analysis"/>
+                <ProjectCarousel customPath="/blog/LinkedIn_Job_Analysis"/>
             </ContentWrapper>
 
             {/* <CustomDocViewer uri="http://localhost:3000/ppt_presentations/ppt_job_presentation.html"/> */}

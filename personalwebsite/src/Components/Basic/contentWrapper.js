@@ -29,6 +29,18 @@ const wrapperStyles = makeStyles((theme) => ({
 }))
 
 export default function ContentWrapper(props){
+    /**
+     * ContentWrapper component props:
+     * @param {node} children - The content to be wrapped.
+     * @param {boolean} [isTextBox=true] - Whether the wrapper is a text box.
+     * @param {number} [opacity] - The opacity of the wrapper's background color.
+     * @param {object} [styles={}] - Custom styles for the wrapper.
+     * @param {string} [padding='20px'] - The padding of the wrapper.
+     * @param {string} [minHeight='inherit'] - The minimum height of the wrapper.
+     * @param {string} [childrenMarginBottom='15px'] - Space between children.
+     * @param {object} [otherProps] - Other props to be passed to the wrapper's div element.
+     */
+
     const { children, isTextBox = true, opacity, styles={}, padding, minHeight, childrenMarginBottom, ...otherProps} = props;  // opacity, isTextBox
     const classes = wrapperStyles({isTextBox, opacity, padding, minHeight, childrenMarginBottom, ...otherProps})
     return <div className={classes.wrapper} style={styles} {...otherProps}>

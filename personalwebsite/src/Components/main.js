@@ -252,7 +252,7 @@ const Main = () => {
         </div>
       </ProjectProvider>
       <footer style={{textAlign: "center", padding: "20px", marginTop: "20px", zIndex: 1, position: "relative"}}>
-                <Typography variant="h3">@2023 Harris Zheng</Typography>
+                <Typography variant="h3">@2025 Harris Zheng</Typography>
                 <br/>
                 <br/>
                 <Typography variant="body1">Art Attributions:</Typography>

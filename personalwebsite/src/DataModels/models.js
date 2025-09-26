@@ -1,15 +1,20 @@
 import DictLevelChecker from "./modelEvaluators/DictLevelChecker"
-import AppRoutes from "../Components/allRoutes";
+import AppRoutes from "./allRoutes";
+import Survey2T2 from "../Components/ProjectPage/ProjectRoutes/2t2_survey";
+import LinkedInJobAnalysis from "../Components/ProjectPage/ProjectRoutes/linkedin";
+import BlogMarkdown from "../Components/BlogPage/blogMarkdown";
+import MafsPage from '../MarkdownPages/page_with_mafs.md';
+import ImportanceOfDesignPage from '../Components/BlogPage/Pages/importance_of_design.md'
+
 import Website_Design_Nov_18_2023 from "../Components/BlogPage/Pages/Website_Design_Nov_18_2023";
 // import Routes from "../Components/allRoutes"
 
-
+console.log(MafsPage)
 /** 
  * @param {Object[]} URLObjDict: Obj
  * @param {String} URLObjDict[].title: Title of URL object. This is matched with our routes to figure out what content we are actually rendering. 
  * @param {String=} URLObjDict[].uri: URI of URL object
  * 
- * In the future, I want to make URLObjDict read from an external web request
 */
 
 const IS_SERVER = false;
@@ -23,7 +28,7 @@ const DOMAIN_NAME = (IS_SERVER) && "" || ""
 export const URLObjDict = {
     "urlsExternal" : [
     ],
-    "projects" : {
+    "blog" : {
       "LinkedIn_Job_Analysis" : {
             "urlsExternal": [
               
@@ -56,35 +61,49 @@ export const URLObjDict = {
 
 export const propsDict = {
   "projects" : {
-    "ECE2T2_Survey" : {
-        "props" : {
-          "id" : 1,
-          "imageFilePath": "/ECE2T2_Survey/class_profile_1_title_page.png",
-          "shortDescription" : "Data Visualization of Surveys collected from Graduating Electrical and Computer Engineering Students",
-          "date": "June 20, 2023",
-          "tags" : ["python", "jupyter_notebook", "data_cleaning", "machine-learning", "data-viz"],
-          "isHighlight" : true
-        }
-    },
-    "LinkedIn_Job_Analysis" : {
-        "props" : {
-          "id" : 2,
-          "imageFilePath": "/linkedin_analysis/tableau_title_page.png",
-          "shortDescription" : "Tableau Analysis of Data Analyst Job Market in 2022",
-          "date": "Nov 1, 2023",
-          "tags" : ["python", "SQL", "tableau", "NLP"],
-          "isHighlight" : true
-        }
-    },
   },
   "blog" : {
       "How_I_Built_This_Website" : {
         "props" : {
           "title" : "How I Built This Website",
           "tags" : ["react", "javascript", "front-end-design", "create-react-app"],
-          "date" : "2023-11-17T00:00:00-08:00", // Vancouver Time Release
+          "date" : "2200-01-01T00:00:00-08:00", // Vancouver Time Release
           "page": <Website_Design_Nov_18_2023/>
         }
+      },
+      "My First Markdown Page" : {
+        "props": {
+          "title" : "Markdown Page KaTex",
+          "tags" : ["markdown"],
+          "date" : "2200-01-01T00:00:00-08:00", // Vancouver Time Release
+          "page" : <BlogMarkdown content={MafsPage}/>
+        }
+      },
+      "Benefits of Good Design" : {
+        "props" : {
+          "title" : "Importance of Good Design",
+          "tags" : ["software", "music"],
+          "date" : "2025-09-25",
+          "page" : <BlogMarkdown content={ImportanceOfDesignPage}/>
+        }
+      },
+      "ECE2T2_Survey" : {
+        "props" : {
+          "imageFilePath": "/ECE2T2_Survey/class_profile_1_title_page.png",
+          "title" : "Data Visualization of Surveys collected from Graduating Electrical and Computer Engineering Students",
+          "date": "June 20, 2023",
+          "tags" : ["python", "jupyter_notebook", "data_cleaning", "machine-learning", "data-viz"],
+          "page" : <Survey2T2/>
+        }
+      },
+      "LinkedIn_Job_Analysis" : {
+          "props" : {
+            "imageFilePath": "/linkedin_analysis/tableau_title_page.png",
+            "title" : "Tableau Analysis of Data Analyst Job Market in 2022",
+            "date": "Nov 1, 2023",
+            "tags" : ["python", "SQL", "tableau", "NLP"],
+            "page" : <LinkedInJobAnalysis/>
+          }
       },
       "Ordering_Plotly" : {
         "props" : {  

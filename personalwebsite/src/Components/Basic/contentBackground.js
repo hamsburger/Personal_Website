@@ -38,6 +38,19 @@ const backgroundStyles = makeStyles((theme) => ({
 }));
 
 export default function ContentBackground({ fill = "true", backgroundColor = "white", opacity = 1, children }){
+  /**
+   * ContentBackground component
+   * 
+   * This component provides a background layout for content pages.
+   * It uses Material-UI's makeStyles to style the component.
+   * 
+   * @param {object} props
+   * @param {boolean} props.fill - Whether to fill the background with an image.
+   * @param {string} props.backgroundColor - The background color of the component.
+   * @param {number} props.opacity - The opacity of the background image.
+   * @param {node} props.children - The content to be rendered inside the component.
+   */
+  
     const location = useLocation();
     let minHeight;
     if (location.pathname !== "/") minHeight = "100vh"

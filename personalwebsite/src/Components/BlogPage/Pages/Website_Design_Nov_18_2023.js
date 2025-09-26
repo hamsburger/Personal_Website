@@ -2,10 +2,11 @@ import { Typography } from "@material-ui/core";
 import ContentBackground from "../../Basic/contentBackground";
 import ContentWrapper from "../../Basic/contentWrapper";
 
-export default function Website_Design_Nov_18_2023() {
+export default function Website_Design_Nov_18_2023(props) {
+    const { title } = props
     return <ContentBackground>
         <ContentWrapper opacity={0.9}>
-            <Typography variant="h1">How I Built this Website</Typography><br/>
+            <Typography variant="h1">{title}</Typography><br/>
             There's some pretty intriguing stuff going on here. Does it surprise you to hear
             that this entire site's routes and its assets are generated on the foundation of <b>one JavaScript Object?</b>{" "}
             And if anything goes off that foundation, we throw an error? Also, how lovely must it be to manage all of

@@ -8,6 +8,10 @@
 
 const AppRoutes = {
     "projects" : {
+        "*" : {
+        } 
+    },
+    "blog" : {
         "ECE2T2_Survey" : {
         },
         "LinkedIn_Job_Analysis" : {
@@ -15,12 +19,13 @@ const AppRoutes = {
             "Bigram Trigram Dashboard" : null,
             "Powerpoint Presentation" : null,
         },
-        "*" : {
-        } 
-    },
-    "blog" : {
+        "Benefits of Good Design" : {
+        },
         "How_I_Built_This_Website" : {
             "title" : "How I Built This Website"
+        },
+        "My First Markdown Page": {
+            "title" : "My First Markdown Page"
         },
         "Ordering_Plotly" : {
             "title" : "How I Arranged Text Ordering in Plotly"

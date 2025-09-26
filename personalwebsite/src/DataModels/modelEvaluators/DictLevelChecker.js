@@ -1,4 +1,4 @@
-import AppRoutes from "../../Components/allRoutes";
+import AppRoutes from "../allRoutes";
 
 class DictLevelChecker {
     constructor (title, checkNumLevels=2){

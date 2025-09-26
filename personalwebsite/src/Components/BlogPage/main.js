@@ -18,6 +18,7 @@ import { dictAccessor } from "../../Helpers/dictAccesor";
 import { Autocomplete } from "@material-ui/lab";
 import RouteGenerator from "../Basic/RouteGenerator";
 import Blog from "./blog";
+import BlogMarkdown from "./blogMarkdown";
 
 const blogStyles = makeStyles((theme) => ({
   tagSearch : {
@@ -54,11 +55,15 @@ const Main = () => {
   let pages = (dictAccessor(desiredPath, propsDict))
   let allPages = (
     Object.entries(pages).filter(elem => new Date(elem[1]["props"]["date"]).getTime() < Date.now()) 
-  ) // Release pages have dates authored before now
+  ) 
+
+  // Build route dictionary
   let routeDict = {}
   routeDict["*"] = <Blog/>
   allPages.forEach(elem => {
-    routeDict[elem[0]] = elem[1]["props"]["page"]  
+    /* If the page is in markdown (a string path), we need to render it using react-markdown.
+       Else, if it is a react element, assign page to route dictionary directly. */
+    routeDict[elem[0]] = elem[1]["props"]["page"];
   })
   return <RouteGenerator customPath={desiredPath} routeDict={routeDict}/>
 };

@@ -1,4 +1,4 @@
-import AppRoutes from "../Components/allRoutes";
+import AppRoutes from "../DataModels/allRoutes";
 export function routeAccessor(pathName) {
     if (pathName === "/") return AppRoutes
     else {

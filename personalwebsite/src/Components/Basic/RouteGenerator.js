@@ -1,15 +1,15 @@
 import React, { useMemo } from "react";
 import { useLocation } from "react-router-dom";
-import AppRoutes from "../allRoutes";
+import AppRoutes from "../../DataModels/allRoutes";
 import { Route, Routes } from "react-router-dom";
 import { routeAccessor } from "../../Helpers/routeAccesor";
 import { dictAccessor } from "../../Helpers/dictAccesor";
 import { propsDict } from "../../DataModels/models";
 
 export default function RouteGenerator({ customPath, routeDict, isDynamic = false, isRelative = true}){
-       /** This Component will generate links based on where it is in the App.
+    /** This Component will generate links based on where it is in the App.
      *  You can also define a customPath to fix the routes being generated.
-      */
+     */
     const routesToGenerate = routeAccessor(customPath)
     const substituteProps = dictAccessor(customPath, propsDict)
     console.log(routesToGenerate)
