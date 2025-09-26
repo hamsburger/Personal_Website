@@ -50,7 +50,7 @@ const BlogMarkdown = ({ content }) => {
         .then(text => {
           console.log(text)
           text = text.slice(16, -2) // Remove export default
-          text = text.replace(/\\r\\n|\\n\\n|\n+/g, " \n ") // Replace \r\n with two spaces and \n
+          text = text.replace(/\n+/g, " :br ").replace(/\\r\\n|\\n\\n/g, " \n") // Replace \r\n with two spaces and \n
           setRenderedMD(text)
         })
     },
