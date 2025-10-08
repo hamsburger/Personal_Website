@@ -1,9 +1,10 @@
 # Importance of Code Design
 
 *Date:* September 25th, 2025
+
 *Author:* Harris Zheng
 
-Something I realized over the years is that you make your life so much easier with good design. It helps you accomplish your visions without thinking too much about it, and this is important especially when you're tired.
+Something I realized over the years is that you make your life so much easier with good design. :br It helps you accomplish your visions without thinking too much about it, and this is important especially when you're tired.
 
 ::img[Sleeping Dog]{alt=hello width=300 src=https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdHMzNW16Zzl3MGNrajk1bWdxNmp0ZDNtb3R6enBiNTAyeWprcTV2diZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DCy2dnXPeGsO4/giphy.gif}
 
